@@ -1,243 +1,324 @@
-<html><head>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBB2G97X5Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-CBB2G97X5Z');
-</script>
-
-
-<!-- <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> -->
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beiyu Lin — Website</title>
 
-     <title>Beiyu's Website</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CBB2G97X5Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CBB2G97X5Z');
+  </script>
 
-     <style type="text/css">
-        * { margin: 0; padding: 0; }
-        body { font: 16px Helvetica, Sans-Serif; line-height: 24px; }
-        .clear { clear: both; }
-        #page-wrap { width: 800px; margin: 40px auto 60px; }
-        #pic { float: right; margin: -30px 0 0 0; }
-        h1 { margin: 0 0 16px 0; padding: 0 0 16px 0; font-size: 42px; font-weight: bold; letter-spacing: -2px; border-bottom: 1px solid #blue; }
-        h2 { font-size: 20px; margin: 0 0 6px 0; position: relative; }
-        h2 span { position: absolute; bottom: 0; right: 0; font-style: italic; font-family: Georgia, Serif; font-size: 16px; color: #blue; font-weight: normal; }
-        p { margin: 0 0 16px 0; }
-        a { color: #blue; text-decoration: none; border-bottom: 1px dotted #blue; }
-        a:hover { border-bottom-style: solid; color: black; }
-        ul { margin: 0 0 32px 17px; }
-       #objective { width: 500px; float: left; text-align: justify}
-        #objective2 { width: 600px; float: right; text-align: justify}
-        #objective1 { float: left; text-align: justify}
-        #objective p { font-family: Georgia, Serif; color: #0C090A; }
-        #objective1 p { font-family: Georgia, Serif;  color: #0C090A; }
-        dt { font-style: italic; font-weight: bold; font-size: 18px; text-align: right; padding: 0 26px 0 0; width: 150px; float: left; height: 100px; border-right: 1px solid #999;  }
-        dd { width: 600px; float: right; }
-        dd.clear { float: none; margin: 0; height: 15px; }
-     </style>
+  <style>
+    :root{
+      --ink:#0B1020; --bg:#ffffff; --muted:#6b7280; --ring:#e5e7eb; --card:#f8fafc;
+      --brand:#1f3a93; --brand-contrast:#0b1f6a; --accent:#2563eb;
+      --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"; color:var(--ink); background:var(--bg)}
+    a{color:var(--brand); text-decoration:none; border-bottom:1px dotted var(--brand)}
+    a:hover{color:var(--brand-contrast); border-bottom-style:solid}
+
+    /* Accessibility helpers */
+    .skip-link{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+    .skip-link:focus{left:12px; top:12px; width:auto; height:auto; padding:8px 10px; background:var(--card); border:1px solid var(--ring); border-radius:8px; z-index:999}
+
+    /* Layout */
+    .wrap{max-width:1000px; margin:18px auto 72px; padding:0 20px}
+    header.hero{
+      display:grid;
+      grid-template-columns: 1fr 240px;
+      grid-template-areas:
+        "id photo"
+        "welcome welcome";
+      gap:28px;
+      align-items:start;
+      margin-top:16px
+    }
+    @media (max-width:820px){
+      header.hero{
+        grid-template-columns:1fr;
+        grid-template-areas:
+          "photo"
+          "id"
+          "welcome";
+      }
+    }
+
+    .card{background:var(--card); border:1px solid var(--ring); border-radius:var(--radius); box-shadow:var(--shadow)}
+
+    /* Identity */
+    .id{ grid-area:id; }
+    .id h1{margin:0 0 6px 0; font-size:42px; letter-spacing:-.02em; border-bottom:1px solid var(--ring); padding-bottom:10px}
+    .id .tagline{color:var(--muted); margin:6px 0 12px}
+    .id p{margin:8px 0}
+
+    /* Headshot */
+    .photo{ grid-area:photo; position:relative; overflow:hidden; border-radius:50%; aspect-ratio:1/1; border:1px solid var(--ring) }
+    .photo img{width:100%; height:100%; object-fit:cover; display:block}
+
+    /* Warm welcome */
+    .welcome{ grid-area:welcome; }
+    .note{padding:18px 20px; border-left:4px solid var(--accent); font-size:16px; line-height:1.7}
+
+    /* Slider */
+    .slider{
+      position:relative; width:100%; height:360px; margin:26px 0 10px; overflow:hidden;
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      background:color-mix(in oklab, var(--card) 85%, var(--bg));
+    }
+    .slides{
+      display:flex; height:100%;
+      transition:transform .6s ease-in-out;
+      gap:0;
+      will-change:transform;
+      backface-visibility:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+    .slide{
+      position:relative; flex:0 0 100%; height:100%; margin:0;
+    }
+    .slide img{width:100%; height:100%; object-fit:cover; display:block}
+    .caption{
+      position:absolute; left:0; right:0; bottom:0; padding:10px 14px; font-size:14px; color:#fff;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.65) 100%);
+    }
+    .controls{position:absolute; inset:0; display:flex; align-items:center; justify-content:space-between; padding:0 8px; pointer-events:none}
+    .controls button{
+      pointer-events:all; width:40px; height:40px; border-radius:50%; border:0;
+      background:rgba(0,0,0,.5); color:#fff; font-size:18px; cursor:pointer
+    }
+    .controls button:hover{background:rgba(0,0,0,.7)}
+    .dots{display:flex; justify-content:center; gap:8px; padding:8px 0 0}
+    .dot{width:9px; height:9px; border-radius:50%; background:color-mix(in oklab, var(--ink) 30%, transparent); opacity:.5; border:1px solid var(--ring)}
+    .dot[aria-current="true"]{opacity:1; transform:scale(1.1)}
+    @media (max-width:860px){ .slider{height:250px} }
+
+    /* News */
+    section.news h2{margin:10px 0 10px; font-size:26px}
+    .year{font-weight:700; margin:18px 0 8px}
+    .timeline{width:100%; border-collapse:separate; border-spacing:0 6px}
+    .timeline td{vertical-align:top; padding:8px 12px}
+    .timeline td.date{width:92px; color:var(--muted)}
+    .timeline tr{background:var(--bg); border:1px solid var(--ring)}
+
+    /* Footer */
+    footer{margin-top:36px; color:var(--muted); display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+    .social{display:flex; gap:10px; align-items:center}
+    .pill{padding:6px 10px; border:1px solid var(--ring); border-radius:999px; background:var(--card)}
+  </style>
 </head>
 
 <body>
+  <a class="skip-link" href="#content">Skip to content</a>
 
-    <div id="page-wrap">
-    
-        <img style="position: absolute; left: 63%; top: 6%; width: 14em; height: 14em;" src="images/pic.jpeg" alt="Photo of me" id="pic" />
-        <!-- <img src="images/pic.png" alt="Photo of me" id="pic" /> -->
-    
-        <div id="contact-info" class="vcard">
-        
-            <!-- Microformats! -->
-        
-            <h class="fn"><big><big><big><big><bold><p style="color: #0C090A;"> Beiyu Lin</bold></big></big></big></big></h>
-            <p style="color: #0C090A;">
-
-                Email: <a class="email" href="mailto:beiyulin@gmail.com">beiyulin@gmail.com;
-                </a> 
-                <!-- <a class="email" href="mailto:beiyu.lin@ou.edu">
-                beiyu.lin@ou.edu;</a>  -->
-                <br />
-                Connect with me at: <a href = "./images/linkedin.JPG">LinkedIn</a>, or 
-                <a href="http://www.linkedin.com/in/beiyu-lin">
-                link; </a>
-                 <!-- <a href = "./images/wechat.JPG">WeChat</a>;   -->
-            <!--      <br/>
-                Office: <span class="tel">DEH 235
-                </span></a><br/>
-                Office Phone: 405-325-0566 
-            </p> -->
+  <div class="wrap" id="content">
+    <header class="hero">
+      <section class="id">
+        <h1>Beiyu Lin</h1>
+        <div class="nav" role="navigation" aria-label="Primary">
+          <a class="pill" href="#news">News</a>
+          <a class="pill" href="research.html">Lab</a>
+          <a class="pill" href="./resume_lin.pdf">Resume</a>
+          <a class="pill" href="BeiyuLin_CV.pdf">Vitae</a>
         </div>
-                
-        <div id="objective">
-            <p>
-                <!-- Beiyu is an assistant professor in Computer Science </a> at the University of Oklahoma</a>.  -->
+        <p>Email: <a class="email" href="mailto:beiyulin@gmail.com">beiyulin@gmail.com</a></p>
+        <p>Connect: <a href="./images/linkedin.JPG" target="_blank" rel="noopener">LinkedIn (scan)</a> ·
+          <a href="https://www.linkedin.com/in/beiyu-lin" target="_blank" rel="noopener">link</a>
+        </p>
+        <p>
+          Dr. Lin earned a B.S. from
+          <a href="https://en.shmtu.edu.cn/" target="_blank" rel="noopener">Shanghai Maritime University</a> (2011),
+          an M.S. from <a href="https://www.stonybrook.edu" target="_blank" rel="noopener">Stony Brook</a> (2013),
+          and an M.S. and Ph.D. from <a href="https://wsu.edu" target="_blank" rel="noopener">Washington State University</a> (2015, 2020).
+          Her work spans machine learning, deep learning, human dynamics, behavior modeling, home/building security, biomedical AI, and smart environments.
+        </p>
+      </section>
 
-                Dr. Lin received her B.S. from <a href="https://en.shmtu.edu.cn/">Shanghai Maritime University</a> in 2011, her M.S. from <a href = "http://www.stonybrook.edu">Stony Brook</a> in 2013, and M.S. and Ph.D. from <a href = "https://wsu.edu">Washington State University</a> in 2015 and 2020, respectively.
-                <br></div>
-                <div id="objective1">
-                <p>
-                Her research includes machine learning, deep learning, human dynamics, behavior modeling, home/building security, biomedical applications of AI, and smart environments.</p>
-            </p>
-        </div>
-        
-        <div class="clear"></div>
+      <aside class="photo card" aria-label="Portrait of Beiyu Lin">
+        <img src="images/pic.jpeg" alt="Portrait of Beiyu Lin" loading="lazy" />
+      </aside>
 
-        <table width="100%" border="0">
-          <tr>
-         <!--    <th><a href="teaching.html">Teaching</a></th>
-            <th><a href="pub2.html">Publications</a></th>
-            <th><a href="research.html">Research</a></th>
-            <th><a href="service.html">Service</a></th>
-            <th><a href="Lab.pdf">Prospective Students</a></th>
-            <th><a href="BeiyuLinResume.pdf">Vitae</a></th> -->
-            <!-- <th style="width:15%;"><a href="teaching.html">Teaching</a></th> -->
-            <!-- <th style="width:25%;"><a href="pub2.html">Publications</a></th> -->
-            <th style="width:24%;"><a href="research.html">Lab</a></th>
-            
-            <!-- <th style="width:22%;"><a href="service.html">Service</a></th> -->
-            <!-- <th><a href="Lab.pdf">Prospective Students</a></th> -->
-            <th style="width:23%;"><a href="./resume_lin.pdf">Resume</a> or <a href="BeiyuLin_CV.pdf">Vitae</a></th>
-            <hr>
-          </tr>
-          <p></p>
-        </table></a></p>
-        <hr>
-        <div class="clear"></div>
-            <p></p>  
-        <!-- <p style="color:red;">
-        I still can support additional 2 fully funded Ph.D. students and one postdoc. Please directly email me if it interests you. -->
-        <p><p><b style="color: blue; ">
-I am open to external opportunities for invited talks, research collaborations, and others for part-time/advising/consulting/visiting basis. Let us chat via email. I frequently visit major cities, e.g., Seattle, NYC, Chicago, Boston, Atlanta, Dallas, and Bay Area for attending conferences, giving talks, etc.
-</b>    
-<!-- <p><b style="color: green; "> I have been organizing a group chat with over 500 PIs in U.S. to share any funding / related opportunities. If you wanna be part of the group, please email to my gmail account or connect with me via WeChat.</b></p> -->
-        <!-- (<span style="color:blue;"><a href="Lab.pdf">recruit</a></span>). </p> -->
-       <!-- <p style="color:#0C090A;font-style:italic;font-size:13.5px; "> I am looking for  <span style="color: green;font-weight:bold;">summer visiting  opportunities globally in 2021 & 2022</span>. If you are aware of any opportunity, please let me know.</p> -->
-        <p></p>
-        <p></p>
+      <!-- Full-width welcome row (headshot sits above it on the right) -->
+      <section class="welcome card note" aria-label="Welcome message">
+        <strong>Warm welcome.</strong> We strive to cultivate a research and learning space that is curious, collaborative, and impactful.
+        I’m open to invited talks, research collaborations, and part-time, advising, consulting, or visiting opportunities.
+        Please feel free to reach out—new ideas and insightful perspectives are always valued.
+      </section>
+    </header>
 
-             <b style="color: #0C090A; "></b>
-     <p></p>
-        <p></p>
-        
-        <h2 style="color: #0C090A; ">News</h2>
-        <b style="color: #0C090A; ">2025</b>
-        <table>
-<p><p>
+    <!-- Slider -->
+    <section class="slider" aria-label="Photo highlights">
+      <div class="slides" id="slides" aria-live="polite">
+        <figure class="slide">
+          <img src="./images/grace.jpg" alt="Grace Series guest talk" loading="lazy" width="1200" height="800" />
+          <figcaption class="caption">Grace Series guest talk 10/2025</figcaption>
+        </figure>
+          
+        <figure class="slide">
+          <img src="./images/bhi.png" alt="organize BHI" loading="lazy" width="1200" height="800" style="object-position:center 65%;"/>
+          <figcaption class="caption">Organize BHI Special Session 10/2025</figcaption>
+        </figure>
 
-<!-- <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">4/4</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Invited as a speaker at Nxt AI-2025.</td><tr>  -->
+        <figure class="slide">
+          <img src="./images/group.png" alt="Research group" loading="lazy" width="1200" height="800" style="object-position:center 20%;" />
+          <figcaption class="caption">IEEE DSA Research group 10/2024</figcaption>
+        </figure>
 
+        <figure class="slide">
+          <img src="./images/ahsan.jpeg" alt="DSAA’24 Student Forum award" loading="lazy" width="1200" height="800" style="object-position:center 65%;"/>
+          <figcaption class="caption">DSAA 2024</figcaption>
+        </figure>
 
-   <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">10/22</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp; Invited as a guest speaker for Grace Series Talk (<a href = "./images/grace.jpg">talk picture).</td><tr> 
+        <figure class="slide">
+          <img src="./images/student_forum_2024_dsa.jpg" alt="Student forum 2024" loading="lazy" width="1200" height="800" />
+          <figcaption class="caption">Student forum 2024</figcaption>
+        </figure>
 
-   <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">10/16</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp; serve as a guest editor for a planning special issue "Technologies for Smart Cities" in Urban Science.</td><tr> 
-
-    <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">10/14</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp; serve as a consultant for a startup CyberEye (advising on AI and cybersecurity strategy).</td><tr>
-
-          <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">7/27</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp; We organize a Special Session on <a href = "./LLM_healthcare_BHI.pdf"> LLM Ecosystem for Healthcare </a> at the IEEE International Conference on Biomedical and Health Informatics (BHI) 2025. See you all in Atlanta in October.</td><tr> 
-
-
-             <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">4/2</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Our preprint <a href="https://arxiv.org/abs/2504.02894">OnRL-RAG: Real-Time Personalized Mental Health Dialogue System</a> is available.</td><tr> 
-
-   <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">3/31</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Our preprint <a href="https://arxiv.org/abs/2504.00125">LLMs for Explainable AI: A Comprehensive Survey</a> is available.</td><tr>  
-
-    
-
- <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">3/3</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Our preprint <a href="https://arxiv.org/abs/2503.01245">LLMs for Code Generation: A Comprehensive Survey of Challenges, Techniques, Evaluation, and Applications</a> is available.</td><tr>  
-
-</tr></tr></tr></table>
-<p><p><p>
-        <b style="color: #0C090A; ">2024</b>
-        <table>
- <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">12/6:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Our workshop proposal "<a href="https://pakdd2025.github.io/workshop/freebie.html">Foundational AI for Pervasive Computing</a>" has been accepted by PAKDD 2025.
+ <figure class="slide">
+  <img src="./group.JPG"
+       alt="Team gathering"
+       loading="lazy"
+       width="900" height="700"
+       style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background:#f5f5f5;">
+  <figcaption class="caption">Lab at UNLV 2022</figcaption>
+</figure>
 
 
 
+        <figure class="slide">
+          <img src="./images/google_exploreCSR_unlv.jpeg"
+               alt="Google ExploreCSR at UNLV"
+               loading="lazy"
+               width="1000" height="1200"
+               style="object-position:center 20%;" />
+          <figcaption class="caption">Google ExploreCSR @ UNLV 2022</figcaption>
+        </figure>
+      </div>
 
+      <div class="controls" aria-hidden="true">
+        <button id="prev" aria-label="Previous slide">&#10094;</button>
+        <button id="next" aria-label="Next slide">&#10095;</button>
+      </div>
+    </section>
+    <div class="dots" id="dots" aria-label="Slide indicators" role="tablist"></div>
 
-   </td><tr>  
-    <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">11/16:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Congrats to Mehdi for his poster accepted by IEEE Big Data 2024 (so proud of all members of SAIL!)
+    <!-- News -->
+    <section class="news" id="news" aria-labelledby="news-heading">
+      <h2 id="news-heading">News</h2>
 
-   </td><tr>  
+      <div class="year">2025</div>
+      <table class="timeline" role="presentation">
+        <tr><td class="date">10/22</td><td>Invited guest speaker for Grace Series Talk (<a href="./images/grace.jpg">talk picture</a>).</td></tr>
+        <tr><td class="date">10/16</td><td>Guest editor for “Technologies for Smart Cities” (Urban Science).</td></tr>
+        <tr><td class="date">10/14</td><td>Consultant for CyberEye (AI & cybersecurity strategy).</td></tr>
+        <tr><td class="date">07/27</td><td>Co-organizing Special Session on <a href="./LLM_healthcare_BHI.pdf">LLM Ecosystem for Healthcare</a> at IEEE BHI 2025 (Atlanta, October).</td></tr>
+        <tr><td class="date">04/02</td><td>Preprint: <a href="https://arxiv.org/abs/2504.02894">OnRL-RAG: Real-Time Personalized Mental Health Dialogue System</a>.</td></tr>
+        <tr><td class="date">03/31</td><td>Preprint: <a href="https://arxiv.org/abs/2504.00125">LLMs for Explainable AI: A Comprehensive Survey</a>.</td></tr>
+        <tr><td class="date">03/03</td><td>Preprint: <a href="https://arxiv.org/abs/2503.01245">LLMs for Code Generation: A Survey</a>.</td></tr>
+      </table>
 
-            <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">10/22:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Affiliate in Department Psychiatry and Behavioral Sciences, Health Sciences Center, College of Medicine, OU
+      <div class="year">2024</div>
+      <table class="timeline" role="presentation">
+        <tr><td class="date">12/06</td><td>Workshop “<a href="https://pakdd2025.github.io/workshop/freebie.html">Foundational AI for Pervasive Computing</a>” accepted by PAKDD 2025.</td></tr>
+        <tr><td class="date">11/16</td><td>Congrats to Mehdi for poster accepted by IEEE Big Data 2024.</td></tr>
+        <tr><td class="date">10/22</td><td>Affiliate, Dept. of Psychiatry & Behavioral Sciences, OU HSC, College of Medicine.</td></tr>
+        <tr><td class="date">10/15</td><td>Invited to NSF CISE MSI Aspiring PI workshop at UNT (travel support).</td></tr>
+        <tr><td class="date">10/08</td><td>Congrats to Ahsan for <a href="./images/ahsan.jpeg">Best Student Presentation Runner-up</a> at IEEE DSAA’24.</td></tr>
+        <tr><td class="date">09/16</td><td>Congrats to Nam, Saeed, and Ahsan for <a href="./images/group.png">student abstract</a> accepted by IEEE DSAA’24 (support by NSF & Journal of AI).</td></tr>
+        <tr><td class="date">08/15</td><td>Guest editor on Symmetry/Asymmetry in Behavioural Science, MDPI.</td></tr>
+        <tr><td class="date">08/08</td><td>Invited to NSF Workshops on AI & Sustainability at Purdue (travel support).</td></tr>
+        <tr><td class="date">07/26</td><td>Congrats to Nam for GCoE Graduate Student Travel Award.</td></tr>
+        <tr><td class="date">07/23</td><td>Congrats to Ramu for <a href="./pub/FewShotLearning_Final.pdf">full paper</a> accepted by IEEE DSAA’24 (CORE A, 26% acceptance).</td></tr>
+        <tr><td class="date">06/24</td><td>Congrats to Nam for abstract accepted by KDD PhD Consortium.</td></tr>
+        <tr><td class="date">05/30</td><td>Congrats to Gary and ChihYu for Gallogly College of Engineering Undergraduate Summer Research Fellowship.</td></tr>
+        <tr><td class="date">05/01</td><td>Congrats to Nam for Gallogly College of Engineering PhD Recruitment Excellence Fellowship.</td></tr>
+        <tr><td class="date">04/22</td><td>SBIR Phase I funding selected. <img src="star2.gif" width="90" height="18" alt="star" /></td></tr>
+        <tr><td class="date">04/15</td><td>Guest lecture at Syracuse University.</td></tr>
+        <tr><td class="date">04/04</td><td>NASA Letter of Interest selected.</td></tr>
+        <tr><td class="date">03/19</td><td><a href="https://www.mdpi.com/2075-5309/14/3/824">Publication</a> in MDPI <em>Buildings</em> (Q1).</td></tr>
+        <tr><td class="date">02/14</td><td>OU Libraries Open Access Fund award.</td></tr>
+      </table>
 
-   </td><tr>  
-<td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">10/15:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;I am accepted and invited to attend NSF CISE MSI Aspiring PI workshop at UNT with travel support.</td>
-        <tr>  
-            <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">10/8:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Congrats to Ahsan for his <a href = "./images/ahsan.jpeg">Best Student Presentation Runner up Award </a> at IEEE DSAA'24 Student Forum.
+      <p style="margin-top:10px"><strong><a href="news.html">Past News (2017–2023)</a></strong></p>
+    </section>
 
-   </td><tr>  
-            <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">9/16:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Congrats to Nam, Saeed, and Ahsan for their <a href = "./images/group.png">student abstract </a> accepted by IEEE DSAA'24 with travel support (funded by NSF and Journal of AI).</td><tr>  
-            <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">8/15:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Serve as a guest editor on Symmetry/Asymmetry in Behavioural Science MDPI (IF: 2.2; Q1 CS).</td>
-   <tr>  
-<td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">8/8:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;I am accepted and invited to attend NSF Workshops on AI and sustainability at Purdue with travel support.</td>
-        
-        <tr>  
-<td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">7/26:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Congrats to Nam for his GCoE Graduate Student Travel Award.</td>
-        <tr>  
-            
-                <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">7/23:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Congrats to Ramu for his <a href = "./pub/FewShotLearning_Final.pdf"> full paper accepted</a> by IEEE DSAA'24 (ranked A at CORE, acceptance rate 26%). </td>
-        <tr>  
-            <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">6/24:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Congrats to Nam for his abstract accepted by KDD phd consortium.</td>
-        <tr>  
-                <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">5/30:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Congrats to Gary and ChihYu for receiving Gallogly College of Engineering Undergraduate Summer Research Fellowship.</td>
-        <tr>  
-            <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">5/1:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Congrats to Nam for receiving Gallogly College of Engineering PhD Recruitment Excellence Fellowship.</td>
-        <tr>  
-             <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">4/22:</td>
-<td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  <img src="star2.gif"  width="100" height="20"/>Our proposal has been selected for funding by SBIR Phase I<img src="star2.gif" width="100" height="20"/>
-</td>
-        <tr>  
-                <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">4/15:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Gave a guest lecture at Syracuse University.</td>
-        <tr>  
-            <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">4/4:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Our Letter of Interest is selected by NASA.</td>
-        <tr>  
-<td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">3/19:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Our work is <a href = "https://www.mdpi.com/2075-5309/14/3/824">published</a> at MDPI Building (Best Quartile Q1).</td>
-        <tr>  
+    <footer>
+      <small>© <span id="y"></span> Beiyu Lin</small>
+      <div class="social" aria-label="Contact and profiles">
+       <!--  <a class="pill" href="mailto:beiyulin@gmail.com" aria-label="Email Beiyu Lin">Email</a>
+        <a class="pill" href="https://scholar.google.com" target="_blank" rel="noopener" aria-label="Google Scholar (link opens in new tab)">Google Scholar</a>
+        <a class="pill" href="https://orcid.org" target="_blank" rel="noopener" aria-label="ORCID (link opens in new tab)">ORCID</a>
+        <a class="pill" href="https://www.linkedin.com/in/beiyu-lin" target="_blank" rel="noopener" aria-label="LinkedIn (link opens in new tab)">LinkedIn</a> -->
+      </div>
+    </footer>
+  </div>
 
+  <script>
+    // Footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-   <td style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">2/14:</td>
-   <td  style="text-align:left;vertical-align:top;padding:0;color: #0C090A;">  &nbsp;&nbsp;Awarded with OU Libraries Open Access Fund to support the publication.</td>
-        <tr>  
+    // Slider
+    (function(){
+      const track = document.getElementById('slides');
+      const slides = Array.from(track.children);
+      const total = slides.length;
+      const prev = document.getElementById('prev');
+      const next = document.getElementById('next');
+      const dots = document.getElementById('dots');
+      let index = 0;
+      let timer;
 
-</tr></tr></table>
+      // Build dots
+      slides.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'dot';
+        d.type = 'button';
+        d.setAttribute('role','tab');
+        d.setAttribute('aria-label','Go to slide ' + (i+1));
+        d.addEventListener('click', () => { go(i); restart(); });
+        dots.appendChild(d);
+      });
 
-            <p><p><p><p> <b><a href="news.html">Past News (2017-2023)</a></b>
-        <br>
+      function mark(){
+        [...dots.children].forEach((el, i) =>
+          el.setAttribute('aria-current', i === index ? 'true' : 'false'));
+      }
+      function go(i){
+        index = (i + total) % total;
+        track.style.transform = 'translate3d(' + (-index * 100) + '%, 0, 0)';
+        mark();
+      }
+      function restart(){ stop(); timer = setInterval(() => go(index + 1), 4200); }
+      function stop(){ if(timer) clearInterval(timer); }
 
-        <dl></dl></div>
+      // Controls
+      if (next && prev) {
+        next.addEventListener('click', () => { go(index + 1); restart(); });
+        prev.addEventListener('click', () => { go(index - 1); restart(); });
+      }
 
-    
-    </div>
+      // Touch swipe
+      let sx = null;
+      track.addEventListener('touchstart', e => { sx = e.touches[0].clientX; stop(); }, {passive:true});
+      track.addEventListener('touchend', e => {
+        if(sx === null) return;
+        const dx = e.changedTouches[0].clientX - sx;
+        if(Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+        sx = null; restart();
+      });
 
+      go(0);
+      restart();
+    })();
+  </script>
 </body>
-
 </html>
