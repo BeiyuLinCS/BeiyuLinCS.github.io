@@ -1,90 +1,272 @@
-x<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
 <head>
-     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-     <!-- <title>One Page Resume</title> -->
+  <style type="text/css">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-     <style type="text/css">
-        * { margin: 0; padding: 0; }
-        body { font: 16px Helvetica, Sans-Serif; line-height: 24px; }
-        .clear { clear: both; }
-        #page-wrap { width: 950px; margin: 40px auto 60px; }
-        #pic { float: right; margin: -30px 0 0 0; }
-        h1 { margin: 0 0 16px 0; padding: 0 0 16px 0; font-size: 40px; font-weight: bold; letter-spacing: -2px; border-bottom: 1px solid #blue; }
-        h2 { font-size: 24px; margin: 0 0 6px 0; position: relative; }
-        h2 span { position: absolute; bottom: 0; right: 0; font-style: italic; font-family: Georgia, Serif; font-size: 16px; color: #blue; font-weight: normal; }
-        p { margin: 0 0 16px 0; }
-        a { color: #blue; text-decoration: none; border-bottom: 1px dotted #blue; }
-        a:hover { border-bottom-style: solid; color: black; }
-        ul { margin: 0 0 32px 17px; }
-        #objective { width: 500px; float: left; }
-        #objective p { font-family: Georgia, Serif; font-style: italic; color: #666; }
-        dt { font-style: italic; font-weight: bold; font-size: 18px; text-align: right; padding: 0 26px 0 0; width: 150px; float: left; height: 100px; border-right: 1px solid #999;  }
-        dd { width: 600px; float: right; }
-        dd.clear { float: none; margin: 0; height: 15px; }
-     </style>
+    :root{
+      --accent: #1f5fbf;
+      --text: #111;
+      --muted: #555;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --border: #e6e6e6;
+      --soft: #f3f6ff;
+    }
+
+    body {
+      font: 16px/1.7 Helvetica, Arial, Sans-Serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    #page-wrap {
+      width: 980px;
+      margin: 36px auto 60px;
+      padding: 0 12px;
+    }
+
+    /* A readable content column inside wide page */
+    .container {
+      max-width: 860px;
+    }
+
+    h1 {
+      font-size: 34px;
+      line-height: 1.2;
+      margin: 22px 0 10px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      letter-spacing: -0.5px;
+    }
+
+    h2 {
+      font-size: 20px;
+      line-height: 1.35;
+      margin: 0 0 10px;
+    }
+
+    p { margin: 10px 0 12px; color: var(--muted); }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(31,95,191,0.55);
+    }
+    a:hover { border-bottom-style: solid; color: #000; }
+
+    ul { margin: 8px 0 0 22px; }
+    li { margin: 6px 0; }
+
+    .section { margin: 14px 0 18px; }
+
+    /* Cards for easy scanning */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 14px 0;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .title-row {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    .course-title a {
+      font-size: 22px;
+      font-weight: 700;
+      border-bottom: none;
+    }
+
+    .meta-link {
+      font-size: 14px;
+      color: var(--muted);
+      border-bottom: 1px dotted #bbb;
+    }
+    .meta-link:hover { color: #000; border-bottom-style: solid; }
+
+    .label {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* Score pill badges */
+    .pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      border: 1px solid rgba(31,95,191,0.18);
+      color: #0b2e6d;
+      font-weight: 700;
+      font-size: 13px;
+      margin-left: 6px;
+      white-space: nowrap;
+    }
+
+    .note {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #fffdf2;
+      border: 1px solid #f0e4b8;
+      color: #6a5a1f;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 18px 0;
+    }
+
+    .mini {
+      font-size: 14px;
+      color: var(--muted);
+    }
+  </style>
 </head>
 
 <body>
+  <div id="page-wrap">
+    <div class="container">
 
-    <div id="page-wrap">
+      <h1>Fall 2025</h1>
 
-        <h1>Fall 2025</h1>
-        <h2><a href = "./teach/fall_25/data_structure.html"> Data Structure
-        </a></h2>
-        <h2><a href = "./teach/fall_25/automata.html"> Automata
-        </a></h2>
-        <h2><a href = "./teach/fall_25/unix.html"> Unix
-        </a></h2>
-        <br><br>
+      <div class="card">
+        <h2>Summary of the three course evaluations</h2>
+        <p><strong>Consistently high evaluation scores (&gt; 4.5)</strong> in:</p>
+        <ul>
+          <li>Psychological safety</li>
+          <li>Instructor excellence</li>
+          <li>Fairness</li>
+          <li>Preparation</li>
+          <li>Accessibility</li>
+          <li>Students feel safe, respected, and fairly evaluated</li>
+          <li>Teaching quality holds even when difficulty is high</li>
+        </ul>
+      </div>
 
-        <h1></h1>
-        <h2><p class="note">
-  Additional course materials and offerings will be added soon.
-</p></h2>
-        <br><br><br><br>
+      <div class="card">
+        <div class="card-header">
+          <div class="title-row">
+            <div class="course-title">
+              <a href="./teach/fall_25/data_structure.html">Data Structure</a>
+            </div>
+            <a class="meta-link" href="./teach/fall25/IMG_9994.PNG">(course evaluation)</a>
+          </div>
+        </div>
 
-         <h1>Fall 2022</h1>
-        <h2><a href = "./teach/fall_22/dm.html"> Intro to Data Mining
-        </a></h2>
-        <br><br><br><br>
+        <div class="label">Key summary</div>
+        <ul>
+          <li>Every category: <span class="pill">5.0</span></li>
+        </ul>
+      </div>
 
-         <h1>Spring 2022</h1>
-        <h2>
-            <!-- <a href = "./teach/spring_22/iot.html">  -->
-                Internet of Things
-        </a></h2>
-        <br><br><br><br>
+      <div class="card">
+        <div class="card-header">
+          <div class="title-row">
+            <div class="course-title">
+              <a href="./teach/fall_25/automata.html">Automata</a>
+            </div>
+            <a class="meta-link" href="./teach/fall25/IMG_9995.PNG">(course evaluation)</a>
+          </div>
+        </div>
 
-           <h1>Fall 2021</h1>
-        <h2>
-            <!-- <a href = "./teach/fall_21/dm.html">  -->
-            Introduction to Data Mining
-        </a></h2>
-        <br><br><br><br>
+        <div class="label">Key summary</div>
+        <ul>
+          <li>Students feel free to ask questions and express opinions and ideas:
+            <span class="pill">4.93</span>
+          </li>
+          <li>Genuine interest in teaching: <span class="pill">4.83</span></li>
+          <li>Instructor preparedness: <span class="pill">4.7</span></li>
+          <li>Fair evaluation: <span class="pill">4.7</span></li>
+          <li>Accessibility: <span class="pill">4.7</span></li>
+          <li>The instructor provided timely feedback: <span class="pill">4.5</span></li>
+          <li>The course objectives were clearly defined: <span class="pill">4.5</span></li>
+          <li>Students discussed ideas from this course with others outside the classroom:
+            <span class="pill">4.5</span>
+          </li>
+        </ul>
 
-         <h1>Spring 2020</h1>
-        <h2><!-- <a href = "./teach/spring_21/cs1370.html"> -->
-        1370 Computer Science I</a></h2>
-        <p>
-        <h2><!-- <a href = "./teach/spring_21/research_courese.html"> -->
-        Research Course</a></h2>
-        <br><br><br><br>
+        <p><strong>Overall instructor excellence:</strong> <span class="pill">4.5</span></p>
+      </div>
 
-        <h1>Fall 2020</h1>
-        <h2><!-- <a href = "./teach/fall_2020/cs1370.html"> -->1370 Computer Science I</a></h2>
-        <p>
-        <h2><!-- <a href = "./teach/fall_2020/cs_seminar.html"> -->Seminar Computer Science</h2></h2>
-        
+      <div class="card">
+        <div class="card-header">
+          <div class="title-row">
+            <div class="course-title">
+              <a href="./teach/fall_25/unix.html">Unix</a>
+            </div>
+            <a class="meta-link" href="./teach/fall25/IMG_9997.PNG">(course evaluation)</a>
+          </div>
+        </div>
 
+        <div class="label">Key summary</div>
+        <ul>
+          <li>Students feel free to ask questions and express opinions and ideas:
+            <span class="pill">4.88</span>
+          </li>
+          <li>Fair evaluation: <span class="pill">4.33</span></li>
+          <li>Accessibility: <span class="pill">4.25</span></li>
+          <li>The instructor provided timely feedback: <span class="pill">4.25</span></li>
+          <li>Genuine interest in teaching: <span class="pill">4.13</span></li>
+          <li>Overall instructor excellence: <span class="pill">4.13</span></li>
+        </ul>
 
-    <br><br><br><br>
+        <div class="note">
+          Additional course materials and offerings will be added soon.
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h1>Fall 2022</h1>
+      <div class="card">
+        <h2><a href="./teach/fall_22/dm.html">Intro to Data Mining</a></h2>
+      </div>
+
+      <h1>Spring 2022</h1>
+      <div class="card">
+        <h2>Internet of Things</h2>
+      </div>
+
+      <h1>Fall 2021</h1>
+      <div class="card">
+        <h2>Introduction to Data Mining</h2>
+      </div>
+
+      <h1>Spring 2020</h1>
+      <div class="card">
+        <h2>1370 Computer Science I</h2>
+        <p class="mini">Research Course</p>
+      </div>
+
+      <h1>Fall 2020</h1>
+      <div class="card">
+        <h2>1370 Computer Science I</h2>
+        <p class="mini">Seminar Computer Science</p>
+      </div>
+
     </div>
-
+  </div>
 </body>
-
 </html>
