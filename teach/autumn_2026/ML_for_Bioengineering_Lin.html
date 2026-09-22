@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Machine Learning for Bioengineering · Level 1</title>
+<meta name="description" content="Application-oriented machine learning for bioengineering: ML concepts, real bioengineering data, and AI-assisted implementation."/>
+<style>
+:root{
+  --bg:#f7f8fa; --card:#ffffff; --text:#17202a; --muted:#5f6b76;
+  --accent:#4b2e83; --accent2:#b7a57a; --line:#e3e7ec; --soft:#f1eef8;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.62}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:var(--max);margin:auto;padding:0 28px}
+.hero{background:linear-gradient(135deg,#24143f,#4b2e83);color:white;padding:64px 0 42px}
+.eyebrow{font-size:.86rem;text-transform:uppercase;letter-spacing:.12em;opacity:.82;font-weight:700}
+h1{font-size:clamp(2.5rem,6vw,5.2rem);line-height:1.02;margin:.25rem 0 1rem;letter-spacing:-.045em}
+.subtitle{font-size:1.25rem;max-width:850px;color:#eee8f7;margin:0 0 24px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:.96rem;color:#eee8f7}
+nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:24px;overflow:auto;padding-top:13px;padding-bottom:13px;white-space:nowrap}
+nav a{font-weight:700;font-size:.92rem;color:#39424c}
+main{padding:42px 0 80px}
+section{scroll-margin-top:70px;margin:0 0 54px}
+h2{font-size:2rem;letter-spacing:-.025em;margin:0 0 14px}
+h3{margin:.2rem 0 .55rem;font-size:1.18rem}
+.lead{font-size:1.14rem;color:#37424c;max-width:980px}
+.philosophy{font-size:1.45rem;line-height:1.5;background:var(--card);border-left:5px solid var(--accent2);padding:25px 28px;border-radius:10px;box-shadow:0 5px 24px rgba(24,31,42,.05)}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:23px;box-shadow:0 4px 18px rgba(24,31,42,.04)}
+.card .num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--soft);color:var(--accent);font-weight:800;margin-bottom:8px}
+.workflow{background:#171321;color:white;padding:25px;border-radius:14px;font-weight:700;font-size:1.08rem;text-align:center;letter-spacing:.01em}
+.arrow{color:#d7c7ef;padding:0 8px}
+.outcomes{display:grid;grid-template-columns:1fr 1fr;gap:12px 30px;padding-left:20px}
+.schedule{width:100%;border-collapse:separate;border-spacing:0;background:white;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.schedule th{background:#eee9f6;text-align:left;padding:14px 15px;font-size:.88rem;text-transform:uppercase;letter-spacing:.04em}
+.schedule td{vertical-align:top;padding:16px 15px;border-top:1px solid var(--line)}
+.schedule tr:first-child td{border-top:0}
+.week{font-weight:800;color:var(--accent);white-space:nowrap}
+.tag{display:inline-block;font-size:.76rem;font-weight:800;padding:3px 8px;border-radius:999px;background:#f0edf6;color:#4b2e83;margin:2px 4px 2px 0}
+.topic strong{display:block;margin-bottom:4px}
+.small{font-size:.91rem;color:var(--muted)}
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.project-grid .card{min-height:170px}
+.note{background:#fff9e8;border:1px solid #ead9a5;padding:17px 20px;border-radius:10px}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:.9rem}
+@media(max-width:820px){.pillars,.project-grid{grid-template-columns:1fr}.outcomes{grid-template-columns:1fr}.schedule{font-size:.9rem}.wrap{padding:0 18px}.hero{padding-top:45px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Machine Learning · Bioengineering · Level 1</div>
+    <h1>Machine Learning for Bioengineering</h1>
+    <p class="subtitle">Learn machine learning by solving real bioengineering problems with authentic data and modern AI tools and agents.</p>
+    <div class="meta">
+      <span><strong>Instructor:</strong> Beiyu Lin</span>
+      <span><strong>Course:</strong> ML Level 1</span>
+      <span><strong>Format:</strong> Concepts + Real Bioengineering Data + AI-Augmented ML Practice</span>
+      <span><strong>Term / Time / Room:</strong> TBA</span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#about">About</a><a href="#pillars">Three Pillars</a><a href="#outcomes">Learning Outcomes</a>
+    <a href="#schedule">Topics</a><a href="#data">Real Data</a><a href="#ai">AI Tools</a><a href="#projects">Projects</a>
+  </div>
+</nav>
+
+<main class="wrap">
+<section id="about">
+  <h2>Class Philosophy</h2>
+  <div class="philosophy"><strong>Learn ML by solving real bioengineering problems.</strong> This is an application-oriented introduction to machine learning in the age of AI. Students learn core ML concepts through authentic bioengineering problems and datasets while using modern AI tools and agents to build, evaluate, and interpret ML solutions. The emphasis is not on memorizing code or detailed mathematical proofs, but on developing the judgment to select appropriate methods, critically evaluate AI-generated solutions, and connect computational results to biological meaning.</div>
+</section>
+
+<section id="pillars">
+  <h2>Three Interconnected Pillars</h2>
+  <div class="pillars">
+    <div class="card"><div class="num">1</div><h3>ML Concepts</h3><p>Build intuition for major algorithms. Learn their assumptions, strengths, limitations, appropriate data types, and when to use—or not use—each method.</p></div>
+    <div class="card"><div class="num">2</div><h3>Real Bioengineering Data</h3><p>Work with authentic datasets from open biomedical resources and, when available, research labs. Experience missing values, noise, imbalance, high dimensionality, and biological variability.</p></div>
+    <div class="card"><div class="num">3</div><h3>AI-Augmented ML Practice</h3><p>Use modern AI tools and agents throughout the ML workflow—to explore data, propose approaches, implement and debug pipelines, compare models, visualize results, and support interpretation—while remaining responsible for every scientific and methodological decision.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Our Recurring Workflow</h2>
+  <div class="workflow">Bioengineering Problem <span class="arrow">→</span> Data <span class="arrow">→</span> ML Method <span class="arrow">→</span> AI-Augmented Analysis <span class="arrow">→</span> Evaluation <span class="arrow">→</span> Biological Interpretation</div>
+</section>
+
+<section id="outcomes">
+  <h2>What You Will Learn</h2>
+  <ul class="outcomes">
+    <li>Recognize supervised, unsupervised, and neural-network learning problems.</li>
+    <li>Match bioengineering questions and dataset types to appropriate ML algorithms.</li>
+    <li>Explain the intuition, advantages, limitations, and assumptions of common methods.</li>
+    <li>Prepare real-world data, including missing, noisy, and imbalanced datasets.</li>
+    <li>Choose meaningful evaluation metrics and recognize overfitting.</li>
+    <li>Use AI coding agents to construct reproducible ML workflows.</li>
+    <li>Inspect, test, and critically evaluate AI-generated code and analyses.</li>
+    <li>Interpret ML outputs in the context of biological or biomedical questions.</li>
+  </ul>
+</section>
+
+<section id="schedule">
+  <h2>Course Topics</h2>
+  <p class="lead">The course progresses from ML foundations to supervised learning, unsupervised learning, and neural networks. Each module connects an algorithmic idea to bioengineering data and an implementation activity.</p>
+  <table class="schedule">
+    <thead><tr><th>Module</th><th>Topics</th><th>Bioengineering & Implementation Focus</th></tr></thead>
+    <tbody>
+      <tr><td class="week">1 · Foundations</td><td class="topic"><strong>Introduction to ML</strong><span class="tag">Data processing</span><span class="tag">Missing data</span><span class="tag">Imputation</span><span class="tag">Noise & jittering</span></td><td>Understand features, labels, dataset structure, train/validation/test splits, preprocessing, leakage, and common challenges in biomedical data.</td></tr>
+      <tr><td class="week">2 · Regression</td><td class="topic"><strong>Linear Regression</strong><span class="tag">continuous outcomes</span></td><td>Predict a continuous biological measurement. Interpret coefficients, residuals, error, assumptions, and limitations.</td></tr>
+      <tr><td class="week">3 · Classification I</td><td class="topic"><strong>Logistic Regression · k-NN</strong></td><td>Binary classification, probabilities, decision boundaries, scaling, interpretability, and neighborhood-based reasoning.</td></tr>
+      <tr><td class="week">4 · Classification II</td><td class="topic"><strong>Decision Trees · Random Forests</strong></td><td>Learn nonlinear relationships in structured biomedical data; compare interpretability, variance, feature importance, and ensemble methods.</td></tr>
+      <tr><td class="week">5 · Classification III</td><td class="topic"><strong>Support Vector Machines</strong></td><td>Margins, kernels, feature scaling, and applications to smaller or high-dimensional datasets.</td></tr>
+      <tr><td class="week">6 · Evaluation</td><td class="topic"><strong>Model Evaluation & Reliability</strong><span class="tag">metrics</span><span class="tag">overfitting</span><span class="tag">imbalanced data</span></td><td>Accuracy, sensitivity/recall, specificity, precision, F1, ROC/AUC, cross-validation, generalization, class imbalance, and responsible model comparison.</td></tr>
+      <tr><td class="week">7 · Clustering</td><td class="topic"><strong>k-Means · Hierarchical Clustering · DBSCAN</strong></td><td>Explore unlabeled biological data, discover groups, compare cluster assumptions, and examine sensitivity to distance, scale, density, and outliers.</td></tr>
+      <tr><td class="week">8 · Dimension Reduction</td><td class="topic"><strong>PCA · UMAP</strong></td><td>Visualize and summarize high-dimensional biomedical data. Distinguish linear projection from nonlinear neighborhood-preserving visualization.</td></tr>
+      <tr><td class="week">9 · Neural Networks</td><td class="topic"><strong>Perceptrons · Multilayer Networks · Backpropagation</strong></td><td>Understand layers, activations, loss, optimization, and learning conceptually; use AI tools to build and inspect a small neural network.</td></tr>
+      <tr><td class="week">10 · Modern Deep Learning</td><td class="topic"><strong>CNNs · RNNs · Transformers</strong></td><td>Connect architectures to data: images, physiological signals/time series, sequences, and multimodal biomedical problems. Focus on choosing architectures and interpreting results rather than deriving them from scratch.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="data">
+  <h2>Real Bioengineering Data</h2>
+  <p class="lead">Real datasets are a core part of the course—not an afterthought. Activities may use open-source biomedical datasets and datasets contributed by participating research labs.</p>
+  <div class="project-grid">
+    <div class="card"><h3>Structured Data</h3><p>Clinical variables, biomarkers, physiological measurements, experimental conditions, and tabular laboratory data.</p></div>
+    <div class="card"><h3>Signals & Time Series</h3><p>ECG, wearable sensors, movement, neural recordings, or other physiological signals.</p></div>
+    <div class="card"><h3>Images & High-Dimensional Data</h3><p>Biomedical images, microscopy, omics, or other datasets where dimension reduction and deep learning become useful.</p></div>
+  </div>
+  <p class="note"><strong>Research bridge:</strong> When research-lab datasets are used, the activity can serve as a small “research trial”—helping students understand an active research question, meet research groups, and identify areas they may want to explore further.</p>
+</section>
+
+<section id="ai">
+  <h2>AI-Augmented ML Practice</h2>
+  <p class="lead">AI tools and agents are integrated throughout the course rather than treated as a separate topic. Students learn to use AI to accelerate implementation and exploration while developing the judgment needed to verify, challenge, and improve AI-generated solutions.</p>
+  <div class="philosophy"><strong>AI can write the code. The bioengineer must make the scientific decisions.</strong></div>
+
+  <h3 style="margin-top:28px">Five AI-Agent Competencies</h3>
+  <div class="project-grid">
+    <div class="card"><h3>1 · Problem Formulation</h3><p>Translate a biological or biomedical question into a well-defined machine learning problem with appropriate inputs, outcomes, and constraints.</p></div>
+    <div class="card"><h3>2 · Agent Instruction</h3><p>Communicate the dataset, research objective, assumptions, constraints, and desired analysis clearly enough for an AI agent to contribute effectively.</p></div>
+    <div class="card"><h3>3 · Critical Verification</h3><p>Inspect AI-generated code and reasoning for data leakage, inappropriate preprocessing, incorrect metrics, methodological errors, and unsupported conclusions.</p></div>
+    <div class="card"><h3>4 · Iterative Experimentation</h3><p>Use agents to explore alternatives, compare preprocessing choices and algorithms, debug pipelines, and refine experiments rather than accepting the first answer.</p></div>
+    <div class="card"><h3>5 · Scientific Interpretation</h3><p>Connect model outputs to biological meaning, distinguish prediction from explanation, recognize uncertainty, and identify what the data cannot establish.</p></div>
+  </div>
+
+  <h3 style="margin-top:30px">AI Across the ML Workflow</h3>
+  <table class="schedule">
+    <thead><tr><th>ML Topic</th><th>Bioengineering Focus</th><th>AI-Agent Practice</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Data Processing</strong></td><td>How should messy physiological or biomedical data be prepared?</td><td>Ask an agent to inspect the data and propose preprocessing; then critique and revise its choices.</td></tr>
+      <tr><td><strong>Regression</strong></td><td>Can measurements or biomarkers predict a continuous outcome?</td><td>Generate a baseline pipeline, examine assumptions and residuals, and verify the implementation.</td></tr>
+      <tr><td><strong>Classification</strong></td><td>Can we distinguish clinically or biologically meaningful groups?</td><td>Build competing classifiers, justify preprocessing, and compare their behavior.</td></tr>
+      <tr><td><strong>Model Evaluation</strong></td><td>Is the model actually useful and trustworthy?</td><td>Use AI to help detect overfitting, leakage, imbalance, and inappropriate evaluation metrics.</td></tr>
+      <tr><td><strong>Clustering</strong></td><td>Are meaningful subgroups present in unlabeled biological data?</td><td>Explore multiple clustering approaches and challenge the agent's interpretation of clusters.</td></tr>
+      <tr><td><strong>PCA / UMAP</strong></td><td>What structure appears in high-dimensional biomedical data?</td><td>Generate visualizations and critically distinguish visual patterns from scientific conclusions.</td></tr>
+      <tr><td><strong>Neural Networks</strong></td><td>Does a neural model add value over classical ML?</td><td>Build a neural network with agent support and compare it against a simpler baseline.</td></tr>
+      <tr><td><strong>CNN / RNN / Transformer</strong></td><td>Which architecture matches images, signals, time series, or sequences?</td><td>Ask an agent to propose an architecture, then require a data- and problem-based justification.</td></tr>
+    </tbody>
+  </table>
+  <p class="small">Students remain responsible for understanding, validating, and explaining all submitted analyses. AI-generated code and explanations are tools for scientific work—not substitutes for scientific judgment.</p>
+</section>
+
+<section id="projects">
+  <h2>Application Studios & Final Project</h2>
+  <p class="lead">Assignments can be organized as connected application studios. Students repeatedly practice the same scientific workflow on increasingly complex bioengineering datasets and culminate in a final project.</p>
+  <div class="project-grid">
+    <div class="card"><h3>Studio 1 · Predict</h3><p>Clean a real dataset, choose a regression or classification method, build a baseline model, and justify the choice.</p></div>
+    <div class="card"><h3>Studio 2 · Compare</h3><p>Apply multiple ML algorithms to one bioengineering question. Compare performance, interpretability, assumptions, and failure modes.</p></div>
+    <div class="card"><h3>Studio 3 · Discover</h3><p>Use clustering and dimensionality reduction to explore biological structure without predefined labels.</p></div>
+    <div class="card"><h3>Studio 4 · Deep Learning</h3><p>Use an appropriate neural architecture for images, signals, or sequences and compare it with a classical ML baseline.</p></div>
+    <div class="card"><h3>Final Project · Research Bridge</h3><p>Choose a real bioengineering dataset, formulate a meaningful question, select and implement appropriate ML methods, evaluate them, and interpret the findings.</p></div>
+    <div class="card"><h3>Communicate</h3><p>Present the problem, data, algorithm choice, AI-assisted workflow, evaluation, biological interpretation, limitations, and next steps.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Course Emphasis</h2>
+  <div class="philosophy">The goal is not simply: <em>“Can you code a random forest?”</em><br/><br/>The goal is: <strong>“Given a real bioengineering problem and dataset, can you choose an appropriate method, use modern tools to implement it correctly, evaluate whether it works, recognize its limitations, and explain what the results mean?”</strong></div>
+</section>
+</main>
+
+<footer><div class="wrap">Machine Learning for Bioengineering · Level 1 · Draft syllabus · Beiyu Lin</div></footer>
+</body>
+</html>
