@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+
+<!-- EDITING: Change course text in the body. Save and refresh your browser. Styling is in the head; optional controls are at the end. -->
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Quantitative Physiology · UW Autumn 2026</title>
+<meta content="University of Washington, Autumn 2026. Understand physiology, interpret equations, and use AI tools to build simulations." name="description"/>
+<link href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMxNzJkMzkiLz48dGV4dCB4PSIzMiIgeT0iNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9IjQzIiBmaWxsPSIjZmZmIj7PhjwvdGV4dD48L3N2Zz4K" rel="icon" type="image/svg+xml"/>
+<!-- PAGE STYLING -->
+<style>
+*{box-sizing:border-box}
+html{scroll-padding-top:24px}
+body{margin:0;background:#fff;color:#252525;font:18px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:1400px;margin:0 auto;padding:48px 28px}
+header{border-bottom:1px solid #d8d8d8;padding-bottom:24px}
+.university{color:#4b2e83;font-weight:600;margin:0 0 8px}
+h1{font-size:clamp(30px,5vw,40px);line-height:1.2;letter-spacing:-.7px;margin:8px 0 12px}
+h2{font-size:26px;line-height:1.3;margin:0 0 16px}
+h3{font-size:19px;margin:25px 0 10px}
+p{margin:12px 0}
+header>p:not(.university){color:#555}
+nav{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:20px}
+a{color:#4b2e83;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #997c28;outline-offset:4px}
+section{padding:32px 0;border-bottom:1px solid #ddd}
+ul,ol{padding-left:25px;margin:12px 0}
+li{margin:8px 0}
+table{border-collapse:collapse;width:100%;text-align:left;font-size:16px}
+th,td{padding:18px 10px;border-bottom:1px solid #ddd;vertical-align:top}
+thead th{padding-top:12px;padding-bottom:12px;background:#f5f5f5;font-size:15px}
+tbody th{width:130px;font-weight:600}
+.date{display:block;font-size:14px;font-weight:400;color:#555;margin-top:3px}
+td>p{margin:6px 0 8px}
+.holiday{font-size:15px;color:#555}
+summary{cursor:pointer;color:#4b2e83;font-size:15px;padding:4px 0;width:fit-content}
+.details-body{margin-top:12px;font-size:16px}
+.equation{font-family:Georgia,serif;overflow-x:auto;line-height:1.8;padding:12px 0}
+.schedule-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;font-size:14px;color:#555;margin:20px 0 12px}
+button{font:inherit;color:#4b2e83;background:white;border:1px solid #aaa;border-radius:3px;padding:6px 10px;cursor:pointer}
+button:hover{background:#f5f5f5}
+.small,footer{font-size:15px;color:#555}
+footer{padding-top:28px}
+.skip{position:absolute;top:-100px;background:white;padding:8px}
+.skip:focus{top:0}
+@media(max-width:540px){main{padding:28px 18px}
+body{font-size:17px}
+h2{font-size:24px}
+th,td{padding:14px 6px}
+tbody th{width:84px}
+.date{font-size:13px}
+table{font-size:16px}
+nav{gap:8px 18px;font-size:16px}
+}
+@media print{main{max-width:none;padding:0}
+body{font-size:12pt}
+nav,.schedule-tools,.skip{display:none}
+details>*{display:block!important}
+section{padding:20px 0}
+tr{break-inside:avoid}
+a{color:inherit}
+footer{font-size:10pt}
+}
+
+
+/* Readings remain visible beside each topic. */
+#weeks{table-layout:fixed}
+#weeks th:first-child{width:12%}
+#weeks th:nth-child(2){width:31%}
+#weeks th:nth-child(3){width:30%}
+#weeks th:nth-child(4){width:27%}
+.reading-cell{line-height:1.65;overflow-wrap:anywhere}
+.schedule-scroll{overflow-x:auto}
+.schedule-scroll:focus-visible{outline:3px solid #997c28;outline-offset:4px}
+@media(max-width:1050px){#weeks{min-width:1000px}}
+@media print{#weeks{min-width:0}.schedule-scroll{overflow:visible}}
+.additional-reading{border-top:1px solid #ddd;margin-top:16px;padding-top:4px}
+.additional-reading ul{padding-left:18px}
+.additional-reading li{margin:8px 0}
+.assignment-cell{overflow-wrap:anywhere}
+.assignment-cell p:first-child{margin-top:0}
+
+/* A quiet overview, with color reserved for project milestones. */
+body{font-size:17px;line-height:1.6}
+main{max-width:1320px}
+#schedule>h2{margin-bottom:12px}
+.course-map{margin:18px 0 26px;padding:22px;background:#faf9fc;border:1px solid #e7e2ee;border-radius:12px}
+.course-map figcaption{font-size:19px;font-weight:650;margin-bottom:4px}
+.map-intro{font-size:15px;color:#555;margin:0 0 20px}
+.milestone-track{display:grid;grid-template-columns:1fr 1.2fr 1.2fr 1.2fr 1.4fr;gap:12px;list-style:none;padding:0;margin:0}
+.milestone-track li{margin:0;min-width:0;position:relative;border-top:5px solid var(--accent);background:var(--tint);border-radius:6px;padding:14px;color:#252525}
+.milestone-track .phase{font-size:12px;text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:var(--accent)}
+.milestone-track h3{margin:7px 0;font-size:19px;line-height:1.25}
+.milestone-track p{font-size:14px;line-height:1.5;margin:6px 0}
+.milestone-track a{color:var(--accent);font-size:14px;font-weight:650}
+.setup{--accent:#526478;--tint:#edf1f5}
+.initial{--accent:#255da0;--tint:#eaf2fc}
+.extend{--accent:#087469;--tint:#e5f4ef}
+.integrate{--accent:#985600;--tint:#fff2db}
+.present{--accent:#65359a;--tint:#f0e9f8}
+.map-bookends{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;margin-top:18px;color:#555}
+.map-bookends p{margin:0}
+#weeks th:first-child{width:12%}#weeks th:nth-child(2){width:32%}#weeks th:nth-child(3){width:34%}#weeks th:nth-child(4){width:22%}
+#weeks{font-size:15px}#weeks td,#weeks th{padding:20px 14px}
+#weeks tbody tr:nth-child(even){background:#fcfcfd}
+#weeks td>strong{font-size:17px;line-height:1.35;display:block}
+#weeks td>p{color:#555;font-size:15px}
+.reading-cell{font-size:14px;line-height:1.5}
+.reading-cell li{margin:7px 0}.reading-cell ul{margin:4px 0;padding-left:17px}
+.additional-reading{border:0;margin-top:12px;padding:0}
+.additional-reading>p{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:#777;margin:0 0 5px}
+.assignment-cell .badge{display:inline-block;padding:4px 9px;border-radius:5px;background:var(--tint);color:var(--accent);font-size:13px;font-weight:700;margin-bottom:6px}
+.assignment-cell details{margin-top:8px}
+.assignment-cell p{font-size:14px}
+#weeks details .details-body{font-size:15px}
+#ai>p,#about>p{max-width:850px}
+.reference-details{margin-top:16px}
+@media(max-width:800px){.milestone-track{grid-template-columns:1fr}.milestone-track li{border-top:0;border-left:5px solid var(--accent);padding:12px 16px}.milestone-track h3{display:inline;font-size:18px;margin-left:12px}.milestone-track p{margin:5px 0}.course-map{padding:16px}.map-intro{margin-bottom:14px}}
+@media print{.course-map,.milestone-track li,.badge{print-color-adjust:exact;-webkit-print-color-adjust:exact}.milestone-track{grid-template-columns:repeat(5,1fr)}.milestone-track li{padding:8px}.milestone-track h3{font-size:13px}.milestone-track p,.milestone-track a{font-size:10px}.course-map{break-inside:avoid}#weeks td,#weeks th{padding:10px 7px}}
+
+.milestone-track .milestone-learning{min-height:125px}
+.milestone-track .milestone-model{border-top:1px solid #0002;padding-top:8px;min-height:150px}
+.milestone-track .milestone-learning p:first-child,.milestone-track .milestone-model p:first-child{font-size:12px;text-transform:uppercase;letter-spacing:.025em;color:var(--accent)}
+@media(max-width:800px){.milestone-track .milestone-learning,.milestone-track .milestone-model{min-height:0}.milestone-track .milestone-model{margin:10px 0}}
+@media print{.milestone-track .milestone-learning,.milestone-track .milestone-model{min-height:0}}
+
+/* Compact milestone overview. */
+.milestone-track .milestone-learning{min-height:84px}
+.milestone-track .milestone-model{min-height:84px}
+.course-map figcaption{margin-bottom:16px}
+@media(max-width:800px){.milestone-track .milestone-learning,.milestone-track .milestone-model{min-height:0}}
+@media print{.milestone-track .milestone-learning,.milestone-track .milestone-model{min-height:0}}
+
+/* Compact cards: natural content height and inline labels. */
+.milestone-track{gap:10px;align-items:start}
+.milestone-track li{padding:12px}
+.milestone-track h3{display:flex;align-items:center;gap:7px;margin:7px 0 10px;font-size:18px}
+.milestone-icon{flex:none;color:var(--accent)}
+.milestone-track .milestone-learning,.milestone-track .milestone-model{min-height:0}
+.milestone-track .milestone-model{margin:7px 0;padding-top:7px}
+.milestone-track .milestone-learning p:first-child,.milestone-track .milestone-model p:first-child{font-size:14px;text-transform:none;letter-spacing:normal;color:#252525;margin:0;line-height:1.45}
+.milestone-track .milestone-learning strong,.milestone-track .milestone-model strong{color:var(--accent)}
+.milestone-track>li>p{margin:7px 0 3px;font-size:13px}
+.milestone-track>li>a{font-size:13px}
+@media(max-width:800px){.milestone-track li{padding:10px 14px}.milestone-track h3{margin:5px 0 8px}.milestone-track .milestone-model{margin:6px 0}}
+
+/* Class Philosophy spans the full content width. */
+#about > p.class-philosophy{max-width:none}
+
+/* First activity spans the full content width. */
+#ai > p.first-activity{max-width:none}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main">
+<header>
+<p class="university">University of Washington · Autumn 2026</p>
+<h1>Quantitative Physiology</h1>
+<p>Instructor: Beiyu Lin · Draft syllabus</p>
+<p>Contact Email: beiyulin@uw.edu;</p>
+<p>Office Hours: Tu/Th 9–10 AM at Foege N210E;</p>
+<p>TA: Jeffrey Pham; Email: jeffp12@uw.edu; Office Hours: TBA.</p>
+<p><strong>First class: Thursday, October 1, 2026.</strong> Meets Tuesdays and Thursdays 10:00 – 11:20 AM at THO 101.</p>
+<nav aria-label="Course sections">
+<a href="#about">About</a>
+<a href="#schedule">Schedule</a>
+<a href="#ai">AI tools</a>
+<a href="#assignments">Assignments</a>
+<a href="#readings">Readings</a>
+</nav>
+</header>
+<section id="about"><h2>Class Philosophy</h2><p class="class-philosophy">Explore how cells react, muscles move, blood delivers oxygen, and neurons communicate—and how mathematical models explain these processes. In the AI era, coding agents help bring these models to life as interactive simulations, while your understanding of physiology guides the questions you ask, the predictions you test, and the meaning you draw from the results.</p>
+<h2>What you will learn</h2>
+<p>Study reactions, transport, muscle, circulation, and electrical signaling by:</p>
+<ol>
+<li>
+<strong>Understand physiology:</strong> explain how biological systems work.</li>
+<li>
+<strong>Understand equations:</strong> explain how equations describe physiological phenomena, including their variables, parameters, and assumptions.</li>
+<li>
+<strong>Use AI coding tools and agents:</strong> implement physiological models, build simulations, explore parameter changes, and validate and interpret results.</li>
+</ol>
+
+</section>
+<section id="schedule">
+<h2>10-week schedule</h2><figure aria-labelledby="milestone-title" class="course-map">
+<figcaption id="milestone-title">Learn physiology. Build one project.</figcaption>
+<ol class="milestone-track">
+<li class="setup"><span class="phase">Week 1</span><h3><svg aria-hidden="true" class="milestone-icon" fill="none" focusable="false" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24" width="22"><rect height="13" rx="2" width="18" x="3" y="4"></rect><path d="M8 21h8M12 17v4M8 8l-2 2 2 2m8-4 2 2-2 2"></path></svg>Get started</h3><div class="milestone-learning"><p><strong>Physiology: </strong>Passive membrane voltage</p></div><div class="milestone-model"><p><strong>Model: </strong>Practice AI coding</p></div><a href="#week-1">Oct 6–8 · Practice</a></li>
+<li class="initial"><span class="phase">Weeks 2–3</span><h3><svg aria-hidden="true" class="milestone-icon" fill="none" focusable="false" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24" width="22"><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="8" r="3"></circle><circle cx="10" cy="19" r="3"></circle><path d="m9 6 6 1M7 9l2 7m7-5-4 5"></path></svg>Initial model</h3><div class="milestone-learning"><p><strong>Physiology: </strong>Reactions &amp; enzyme kinetics</p></div><div class="milestone-model"><p><strong>Model: </strong>Build an initial model</p></div><p>Release W2 → Due W3</p><a href="#week-3">Written 1 + Demo 1</a></li>
+<li class="extend"><span class="phase">Weeks 4–5</span><h3><svg aria-hidden="true" class="milestone-icon" fill="none" focusable="false" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24" width="22"><path d="M4 4h6v5h5V4h5v16h-6v-5H9v5H4z"></path></svg>Extend</h3><div class="milestone-learning"><p><strong>Physiology: </strong>Transport, motors &amp; muscle</p></div><div class="milestone-model"><p><strong>Model: </strong>Add a mechanism</p></div><p>Release W4 → Due W5</p><a href="#week-5">Written 2 + Demo 2</a></li>
+<li class="integrate"><span class="phase">Weeks 6–7</span><h3><svg aria-hidden="true" class="milestone-icon" fill="none" focusable="false" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24" width="22"><path d="M20 5c-3-3-6-1-8 1-2-2-5-4-8-1-4 4 2 10 8 15 6-5 12-11 8-15Z"></path><path d="M3 11h4l2-3 3 7 2-4h7"></path></svg>Integrate</h3><div class="milestone-learning"><p><strong>Physiology: </strong>Circulation &amp; oxygen transport</p></div><div class="milestone-model"><p><strong>Model: </strong>Integrate &amp; validate</p></div><p>Release W6 → Due W7</p><a href="#week-7">Written 3 + Demo 3</a></li>
+<li class="present"><span class="phase">Weeks 8–10</span><h3><svg aria-hidden="true" class="milestone-icon" fill="none" focusable="false" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24" width="22"><rect height="13" rx="2" width="18" x="3" y="3"></rect><path d="m7 12 3-4 3 2 4-4M12 16v5m-4 0 4-3 4 3"></path></svg>Refine &amp; present</h3><div class="milestone-learning"><p><strong>Physiology: </strong>Electrical signaling &amp; synapses</p></div><div class="milestone-model"><p><strong>Model: </strong>Refine &amp; present</p></div><p>Presentation · Week 10</p><a href="#week-10">Dec 8–10</a></li>
+</ol>
+<div class="map-bookends"><p><strong>Oct 1:</strong> Course introduction</p><p><strong>Dec 14:</strong> Written final exam · 10:30 AM–12:20 PM</p></div>
+</figure>
+<p class="small" id="assignments"><strong>3 written assignments + 3 connected demos → 1 final project.</strong> Each written assignment and demo share a release date and deadline.</p>
+<p class="small">Readings stay visible below. Keener &amp; Sneyd may require a UW Libraries login. Exact assignment deadlines will be announced.</p>
+<p class="small">Reading key: <strong>A&amp;P</strong> = OpenStax Anatomy and Physiology; <strong>ND</strong> = Neuronal Dynamics.</p><div class="schedule-tools">
+<button aria-controls="weeks" aria-expanded="false" id="expand-weeks" type="button">Show all details</button>
+</div>
+<div aria-label="Weekly schedule and readings" class="schedule-scroll" role="region" tabindex="0">
+<table id="weeks">
+<thead>
+<tr>
+<th scope="col">Week / dates</th>
+<th scope="col">Topic and activity</th>
+<th scope="col">Reading</th>
+<th scope="col">Assignments</th>
+</tr>
+</thead>
+<tbody>
+<tr id="october-1">
+<th scope="row">First class<span class="date"><strong>Thursday<br/>October 1, 2026</strong></span></th>
+<td>
+<strong>Introduction to Quantitative Physiology</strong>
+<p>Course overview and setup.</p>
+<details>
+<summary>Explore this topic</summary>
+<div class="details-body">
+<ul>
+<li>Physiological scales: molecules, cells, and organ systems.</li>
+<li>How equations describe physiological phenomena: variables, parameters, units, and assumptions.</li>
+<li>A simple example connecting a physiological question to a mathematical model.</li>
+<li>Introduction to AI coding tools and setup instructions.</li>
+</ul>
+<p><strong>Prepare for October 6:</strong> choose a coding tool and follow the setup instructions provided in class.</p>
+</div>
+</details>
+</td>
+<td class="reading-cell">Lecture 1 slides and introductory notes (links to be posted).<div class="additional-reading"><p><strong>Additional reading</strong></p><ul><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/1-1-overview-of-anatomy-and-physiology">A&amp;P §1.1: Overview</a></li><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/1-2-structural-organization-of-the-human-body">A&amp;P §1.2: Structural Organization</a></li><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/1-5-homeostasis">A&amp;P §1.5: Homeostasis</a></li></ul></div></td>
+<td class="assignment-cell"><p>Set up your <a href="#ai">AI coding tools</a><br/>before Oct 6.</p></td>
+</tr>
+<tr id="week-1">
+<th scope="row">1<span class="date">Tue Oct 6 · Thu Oct 8</span>
+</th>
+<td>
+<strong>AI coding agents: practical implementation studio</strong>
+<p>Practice with an AI coding agent.</p>
+<details>
+<summary>Explore this topic</summary>
+<div class="details-body">
+<div class="equation">Specification → context → tool call → execution → feedback → revision</div>
+<p>
+<strong>Understand:</strong> Trace an agentic loop. Explain function-call schemas, structured outputs, and the MCP host–client–server architecture. Identify where the model’s equations, parameters, and validation requirements enter an agent’s implementation task.</p>
+<p>
+<strong>Use AI:</strong> Use a coding agent to create the passive membrane explorer described in the AI coding studio. Keep equations, solver, and interface in separate modules.</p>
+<p>
+<strong>Check:</strong> Compare the numerical trajectory with the supplied analytic solution. Review the code diff and document a correction.</p>
+<p>
+<strong>Milestone:</strong> Build the analytic-benchmark membrane explorer; reuse this workflow for every demo.</p>
+</div>
+</details>
+</td>
+<td class="reading-cell"><p><a href="#ai">AI coding tools &amp; references</a><br/>Read the documentation for your chosen tool.</p><div class="additional-reading"><p><strong>Additional reading</strong></p><ul><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/12-4-the-action-potential">A&amp;P §12.4: The Action Potential</a></li><li><a href="https://neuronaldynamics.epfl.ch/online/Ch1.S3.html#SS1">ND §1.3.1: Integration of Inputs</a></li></ul></div><details><summary>Reading guidance</summary><p>read the resting-membrane-potential discussion. focus on the passive membrane circuit before adding a spike threshold.</p></details></td>
+<td class="assignment-cell"></td>
+</tr>
+<tr id="week-2">
+<th scope="row">2<span class="date">Tue Oct 13 · Thu Oct 15</span>
+</th>
+<td>
+<strong>Chemical reactions, equilibrium &amp; thermodynamics</strong>
+<p>Reaction rates, energy, and equilibrium.</p>
+<details>
+<summary>Explore this topic</summary>
+<div class="details-body">
+<div class="equation">A + B ⇌ C; dc/dt = k₊ab − k₋c<br/>ΔG = ΔG° + RT ln Q</div>
+<p>
+<strong>Understand:</strong> Explain how forward and reverse reaction terms change species concentrations while conserving total material. Interpret Kd = k₋/k₊ as a measure of binding affinity, and relate the sign of ΔG to reaction direction using dimensionless activities in Q.</p>
+<p>
+<strong>Use AI:</strong> Build a reversible-binding simulator with adjustable initial conditions and rate constants. Display transient concentrations and equilibrium predictions.</p>
+<p>
+<strong>Check:</strong> Confirm conserved totals and zero net reaction rate at equilibrium. Treat equilibrium and driven steady states distinctly.</p>
+</div>
+</details>
+</td>
+<td class="reading-cell"><a href="https://link.springer.com/book/10.1007/978-0-387-75847-3">Keener &amp; Sneyd I</a>, Chapter 1: biochemical reactions.<div class="additional-reading"><p><strong>Additional reading</strong></p><ul><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/2-3-chemical-reactions">A&amp;P §2.3: Chemical Reactions</a></li></ul></div><details><summary>Reading guidance</summary><p>reaction types, energy, and reaction rates.</p></details></td>
+<td class="assignment-cell"><span class="badge initial">Release · Pair 1</span><p>Written 1 + Demo 1<br/>Initial model · due Week 3</p><details><summary>What to submit</summary><p><strong>Written work:</strong> Reactions and enzyme kinetics: explain mass action, equilibrium, and enzyme saturation; interpret rate constants, Vmax, and Km; show calculations with units.</p><p><strong>Demo work:</strong> Initial model: choose your final-project physiological question, explain the equations, and implement a simple working simulation with a basic validation check.</p><p class="small">Released together in Week 2; both due in Week 3.</p></details></td>
+</tr>
+<tr id="week-3">
+<th scope="row">3<span class="date">Tue Oct 20 · Thu Oct 22</span>
+</th>
+<td>
+<strong>Enzyme kinetics &amp; model reduction</strong>
+<p>Enzyme saturation and simpler models.</p>
+<details>
+<summary>Explore this topic</summary>
+<div class="details-body">
+<div class="equation">E + S ⇌ C → E + P<br/>v = Vmax s/(Km + s); Km = (k₋₁ + k₂)/k₁</div>
+<p>
+<strong>Understand:</strong> Interpret each term in the full enzyme-reaction model and the conservation relation e + c = e₀. Explain how Vmax and Km shape the Michaelis–Menten curve and when the quasi-steady-state approximation is appropriate.</p>
+<p>
+<strong>Use AI:</strong> Class activity: compare full and reduced enzyme models while changing substrate and enzyme concentrations.</p>
+<p>
+<strong>Check:</strong> Verify mass balance, positivity, and low- and high-substrate asymptotes. Identify a regime where the reduction fails.</p>
+<p>
+<strong>Milestone:</strong> Written 1 and Demo 1: initial model for your final project, including the project question and a validation check.</p>
+</div>
+</details>
+</td>
+<td class="reading-cell"><a href="https://link.springer.com/book/10.1007/978-0-387-75847-3">Keener &amp; Sneyd I</a>, Chapter 1: enzymatic reactions.<div class="additional-reading"><p><strong>Additional reading</strong></p><ul><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/2-3-chemical-reactions">A&amp;P §2.3: Chemical Reactions</a></li></ul></div><details><summary>Reading guidance</summary><p>revisit catalysts and factors affecting reaction rates; use Keener &amp; Sneyd for the quantitative enzyme model.</p></details></td>
+<td class="assignment-cell"><span class="badge initial">Due · Pair 1</span><p>Written 1 + Demo 1</p></td>
+</tr>
+<tr id="week-4">
+<th scope="row">4<span class="date">Tue Oct 27 · Thu Oct 29</span>
+</th>
+<td>
+<strong>Membrane transport &amp; molecular motors</strong>
+<p>Diffusion, transport, and motor motion.</p>
+<details>
+<summary>Explore this topic</summary>
+<div class="details-body">
+<div class="equation">J = −D∇c; ∂c/∂t = D∇²c<br/>Steady slab: J = (D/L)(cL − cR)<br/>v = a(k₊ − k₋); D = a²(k₊ + k₋)/2</div>
+<p>
+<strong>Understand:</strong> <strong>Membrane transport:</strong> Explain how concentration gradients, diffusivity, and membrane thickness determine flux. Interpret the diffusion equation as local mass conservation and explain carrier-state balances.<br/>
+<br/>
+<strong>Molecular motors:</strong> Explain how step size and forward/backward rates determine mean drift and spreading. Connect random trajectories to the ensemble quantities v and D.</p>
+<p>
+<strong>Use AI:</strong> <strong>Membrane transport &amp; cellular homeostasis:</strong> Create a diffusion or carrier-transport explorer with explicit initial and boundary conditions.<br/>
+<br/>
+<strong>Molecular motors &amp; biased random walks:</strong> Simulate many motor trajectories and compare mean displacement and variance with theory. Use this as a class activity or a relevant extension of your project.</p>
+<p>
+<strong>Check:</strong> <strong>Membrane transport &amp; cellular homeostasis:</strong> Check flux direction, boundary conditions, mass balance for the chosen boundaries, and spatial/time-step convergence.<br/>
+<br/>
+<strong>Molecular motors &amp; biased random walks:</strong> At equal rates, verify zero drift with nonzero diffusion. Report uncertainty from a finite ensemble.</p>
+<p>
+<strong>Milestone:</strong> Plan a relevant extension of your Demo 1 model for Demo 2.</p>
+</div>
+</details>
+</td>
+<td class="reading-cell"><a href="https://link.springer.com/book/10.1007/978-0-387-75847-3">Keener &amp; Sneyd I</a>: cellular homeostasis.<br/><br/><a href="https://link.springer.com/book/10.1007/978-0-387-79388-7">Keener &amp; Sneyd II</a>: molecular basis of muscle.<div class="additional-reading"><p><strong>Additional reading</strong></p><ul><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/3-1-the-cell-membrane">A&amp;P §3.1: The Cell Membrane</a></li><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/3-2-the-cytoplasm-and-cellular-organelles">A&amp;P §3.2: The Cytoplasm and Cellular Organelles</a></li></ul></div><details><summary>Reading guidance</summary><p>passive and active transport. focus on the cytoskeleton and intracellular transport.</p></details></td>
+<td class="assignment-cell"><span class="badge extend">Release · Pair 2</span><p>Written 2 + Demo 2<br/>Extended model · due Week 5</p><details><summary>What to submit</summary><p><strong>Written work:</strong> Transport, molecular motors, and muscle: interpret flux, stepping rates, and force–velocity relationships; calculate and predict parameter effects.</p><p><strong>Demo work:</strong> Extended model: build on Demo 1 by adding a relevant mechanism or interaction. Explore parameter effects and compare the extended model with the initial model.</p><p class="small">Released together in Week 4; both due in Week 5.</p></details></td>
+</tr>
+<tr id="week-5">
+<th scope="row">5<span class="date">Tue Nov 3 · Thu Nov 5</span>
+</th>
+<td>
+<strong>Muscle mechanics: Hill &amp; Huxley models</strong>
+<p>From molecular attachment to muscle force.</p>
+<details>
+<summary>Explore this topic</summary>
+<div class="details-body">
+<div class="equation">(p + a)v = b(p₀ − p)<br/>∂n/∂t − v ∂n/∂x = f(x)(1 − n) − g(x)n<br/>F = ρ ∫ r(x)n(x,t) dx</div>
+<p>
+<strong>Understand:</strong> <strong>Hill model:</strong> Interpret the force–velocity curve, parameters, isometric limit, and zero-load limit. Explain the physiological scope of this phenomenological relation.<br/>
+<br/>
+<strong>Huxley model:</strong> Explain how attachment, detachment, and movement change the bound cross-bridge population. Interpret n, f, g, the velocity sign convention, and how individual bridge forces contribute to total force.</p>
+<p>
+<strong>Use AI:</strong> <strong>Muscle mechanics: the Hill model:</strong> Build a force–velocity explorer. Compare parameter sets and compute mechanical power p·v.<br/>
+<br/>
+<strong>Cross-bridge dynamics: the Huxley model:</strong> Explore cross-bridge dynamics as a class activity. For Demo 2, extend your existing project and check the new model behavior.</p>
+<p>
+<strong>Check:</strong> <strong>Muscle mechanics: the Hill model:</strong> Recover v = 0 at p = p₀ and identify the valid shortening regime. Check force and velocity units.<br/>
+<br/>
+<strong>Cross-bridge dynamics: the Huxley model:</strong> Check 0 ≤ n ≤ 1 and the zero-velocity equilibrium n = f/(f + g), where f + g &gt; 0.</p>
+<p>
+<strong>Milestone:</strong> Written 2 and Demo 2: extended final-project model with parameter exploration and validation.</p>
+</div>
+</details>
+</td>
+<td class="reading-cell"><a href="https://link.springer.com/book/10.1007/978-0-387-79388-7">Keener &amp; Sneyd II</a>: muscle, the Hill force–velocity relation, and cross-bridge models.<div class="additional-reading"><p><strong>Additional reading</strong></p><ul><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/10-3-muscle-fiber-contraction-and-relaxation">A&amp;P §10.3: Muscle Fiber Contraction and Relaxation</a></li><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/10-4-nervous-system-control-of-muscle-tension">A&amp;P §10.4: Nervous System Control of Muscle Tension</a></li></ul></div></td>
+<td class="assignment-cell"><span class="badge extend">Due · Pair 2</span><p>Written 2 + Demo 2</p></td>
+</tr>
+<tr id="week-6">
+<th scope="row">6<span class="date">Tue Nov 10 · Thu Nov 12</span>
+</th>
+<td>
+<strong>Vascular networks &amp; Windkessel dynamics</strong>
+<p>Blood flow, resistance, and compliance.</p>
+<details>
+<summary>Explore this topic</summary>
+<div class="details-body">
+<div class="equation">Q = ΔP/R; R = 8μL/(πr⁴)<br/>C dPc/dt = Q − Pc/Rv; P = RaQ + Pc</div>
+<p>
+<strong>Understand:</strong> <strong>Vascular networks:</strong> Explain how pressure differences and resistance determine flow, why radius has a fourth-power effect, and how series and parallel vessels redistribute flow.<br/>
+<br/>
+<strong>Windkessel models:</strong> Interpret resistance, compliance, pressure, and inflow. Explain how the pressure-change term represents volume storage, under constant-parameter and zero venous reference-pressure assumptions.</p>
+<p>
+<strong>Use AI:</strong> Class activity: use a worked resistance-network example and explore a Windkessel app with adjustable resistance, compliance, and pulse timing. For Demo 3, integrate and validate the components of your existing project.</p>
+<p>
+<strong>Check:</strong> <strong>Circulation as a flow network:</strong> Conserve flow at each junction and verify the fourth-power radius dependence. State why real vessels can depart from this model.<br/>
+<br/>
+<strong>Pulsatile flow &amp; Windkessel models:</strong> With Q = 0, recover Pc(t) = Pc(0) exp[−t/(RvC)]. Verify units and periodic behavior after transients.</p>
+<p>
+<strong>Milestone:</strong> Begin Demo 3: integrate the components of your final project and strengthen validation.</p>
+</div>
+</details>
+</td>
+<td class="reading-cell"><a href="https://link.springer.com/book/10.1007/978-0-387-79388-7">Keener &amp; Sneyd II</a>: circulation, compliance, and arterial pressure.<div class="additional-reading"><p><strong>Additional reading</strong></p><ul><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/20-2-blood-flow-blood-pressure-and-resistance">A&amp;P §20.2: Blood Flow, Blood Pressure, and Resistance</a></li><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/20-3-capillary-exchange">A&amp;P §20.3: Capillary Exchange</a></li></ul></div></td>
+<td class="assignment-cell"><span class="badge integrate">Release · Pair 3</span><p>Written 3 + Demo 3<br/>Integrated demo · due Week 7</p><details><summary>What to submit</summary><p><strong>Written work:</strong> Circulation and oxygen transport: interpret pressure, resistance, compliance, and oxygen-binding curves; calculate flow and saturation.</p><p><strong>Demo work:</strong> Integrated demo: bring your project components together, validate the results, and explain the physiological findings and limitations.</p><p class="small">Released together in Week 6; both due in Week 7.</p></details></td>
+</tr>
+<tr id="week-7">
+<th scope="row">7<span class="date">Tue Nov 17 · Thu Nov 19</span>
+</th>
+<td>
+<strong>Oxygen binding, blood content &amp; delivery</strong>
+<p>Oxygen binding and delivery.</p>
+<details>
+<summary>Explore this topic</summary>
+<div class="details-body">
+<div class="equation">cdissolved = αp; Y = pʰ/(P₅₀ʰ + pʰ)</div>
+<p>
+<strong>Understand:</strong> Distinguish dissolved oxygen concentration, partial pressure, saturation, and total oxygen content. Interpret α, P₅₀, and the Hill exponent h; explain how binding and cooperativity shape oxygen uptake and release.</p>
+<p>
+<strong>Use AI:</strong> Create a binding-curve explorer and calculate illustrative oxygen-content changes across a pressure range.</p>
+<p>
+<strong>Check:</strong> Recover Y → 0 and Y → 1 at the limits, with Y = 1/2 at P₅₀. Label illustrative parameter values.</p>
+<p>
+<strong>Milestone:</strong> Written 3 and Demo 3: integrated final-project demo with validation and physiological interpretation.</p>
+</div>
+</details>
+</td>
+<td class="reading-cell"><a href="https://link.springer.com/book/10.1007/978-0-387-75847-3">Keener &amp; Sneyd I</a>: cooperative binding.<br/><br/><a href="https://link.springer.com/book/10.1007/978-0-387-79388-7">Keener &amp; Sneyd II</a>: blood and respiration.<div class="additional-reading"><p><strong>Additional reading</strong></p><ul><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/18-3-erythrocytes">A&amp;P §18.3: Erythrocytes</a></li><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/22-5-transport-of-gases">A&amp;P §22.5: Transport of Gases</a></li></ul></div><details><summary>Reading guidance</summary><p>hemoglobin background. oxygen transport and binding.</p></details></td>
+<td class="assignment-cell"><span class="badge integrate">Due · Pair 3</span><p>Written 3 + Demo 3</p></td>
+</tr>
+<tr id="week-8">
+<th scope="row">8<span class="date">Tue Nov 24</span>
+</th>
+<td>
+<strong>Membrane potentials &amp; passive electrical flow</strong>
+<p>Ion gradients and membrane voltage.</p>
+<p class="holiday">No class Thursday, November 26 (Thanksgiving).</p>
+<details>
+<summary>Explore this topic</summary>
+<div class="details-body">
+<div class="equation">Eion = RT/(zF) ln(cout/cin)<br/>C dV/dt = Σ gi(Ei − V) + Iapp</div>
+<p>
+<strong>Understand:</strong> Interpret the Nernst equation using ion concentrations, valence, temperature, and an inside-minus-outside voltage convention. Explain how capacitance, conductances, reversal potentials, and applied current determine membrane-voltage changes.</p>
+<p>
+<strong>Use AI:</strong> Extend the Week 01 app to multiple conductances; show how each changes the resting voltage and time constant.</p>
+<p>
+<strong>Check:</strong> For constant conductances and zero applied current, recover Vrest = ΣgiEi/Σgi and τ = C/Σgi.</p>
+<p>
+<strong>Milestone:</strong> Revisit and explain the Week 01 membrane explorer; no new standalone demo milestone.</p>
+</div>
+</details>
+</td>
+<td class="reading-cell"><a href="https://link.springer.com/book/10.1007/978-0-387-75847-3">Keener &amp; Sneyd I</a>: membrane ion channels and passive electrical flow.<div class="additional-reading"><p><strong>Additional reading</strong></p><ul><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/12-4-the-action-potential">A&amp;P §12.4: The Action Potential</a></li><li><a href="https://neuronaldynamics.epfl.ch/online/Ch2.S1.html">ND §2.1: Equilibrium Potential</a></li><li><a href="https://neuronaldynamics.epfl.ch/online/Ch1.S3.html#SS1">ND §1.3.1: Integration of Inputs</a></li></ul></div><details><summary>Reading guidance</summary><p>resting potential and ion gradients. passive membrane dynamics.</p></details></td>
+<td class="assignment-cell"></td>
+</tr>
+<tr id="week-9">
+<th scope="row">9<span class="date">Tue Dec 1 · Thu Dec 3</span>
+</th>
+<td>
+<strong>Channel gating &amp; Morris–Lecar excitability</strong>
+<p>Channel gates, thresholds, and firing.</p>
+<details>
+<summary>Explore this topic</summary>
+<div class="details-body">
+<div class="equation">dn/dt = α(V)(1 − n) − β(V)n = (n∞ − n)/τn</div>
+<p>
+<strong>Understand:</strong> Explain α and β as opening and closing rates, n∞ as the steady-state open fraction, and τn as the response timescale. Interpret how voltage–recovery feedback and current signs produce rest, threshold behavior, and oscillations.</p>
+<p>
+<strong>Use AI:</strong> Create a Morris–Lecar phase-plane explorer with trajectories and nullclines. Vary input current and distinguish rest from repetitive firing.</p>
+<p>
+<strong>Check:</strong> Keep gates in [0,1], verify current signs, and compare behavior across solver tolerances.</p>
+<p>
+<strong>Milestone:</strong> Working final-project demo and peer validation review.</p>
+</div>
+</details>
+</td>
+<td class="reading-cell"><a href="https://link.springer.com/book/10.1007/978-0-387-75847-3">Keener &amp; Sneyd I</a>: membrane ion channels and excitability.<div class="additional-reading"><p><strong>Additional reading</strong></p><ul><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/12-4-the-action-potential">A&amp;P §12.4: The Action Potential</a></li><li><a href="https://neuronaldynamics.epfl.ch/online/Ch2.S2.html#SS1">ND §2.2.1: Definition of the Hodgkin–Huxley Model</a></li><li><a href="https://neuronaldynamics.epfl.ch/online/Ch4.S3.html">ND §4.3: Phase Plane Analysis</a></li></ul></div><details><summary>Reading guidance</summary><p>voltage-gated channels and threshold. focus on gate variables. use these methods to interpret the course’s Morris–Lecar example.</p></details></td>
+<td class="assignment-cell"></td>
+</tr>
+<tr id="week-10">
+<th scope="row">10<span class="date">Tue Dec 8 · Thu Dec 10</span>
+</th>
+<td>
+<strong>Action potentials, propagation &amp; synaptic coupling</strong>
+<p>Action potentials and synapses.</p>
+<details>
+<summary>Explore this topic</summary>
+<div class="details-body">
+<div class="equation">Cₘ dV/dt = Iapp − ḡNa m³h(V − ENa) − ḡK n⁴(V − EK) − gL(V − EL)<br/>ds/dt = αT(1 − s) − βs<br/>Isyn,in = gsyn s(Esyn − Vpost)</div>
+<p>
+<strong>Understand:</strong> <strong>Action potentials and propagation:</strong> Interpret the sodium, potassium, leak, and capacitive terms; explain activation, inactivation, and refractoriness. Explain how axial current coupling in the cable equation supports propagation.<br/>
+<br/>
+<strong>Synapses:</strong> Interpret receptor activation and decay, synaptic conductance, and the driving force Esyn − Vpost. Explain how reversal potential shapes the postsynaptic response.</p>
+<p>
+<strong>Use AI:</strong> Use an agent to implement a Hodgkin–Huxley stimulus-response example and add a prescribed synaptic input. Analyze the cable equation and coupled-cell formulation; full spatial simulation is optional. Peer-review final-project equations and numerical evidence.</p>
+<p>
+<strong>Check:</strong> <strong>Action potentials &amp; electrical propagation:</strong> Use a documented parameter set and voltage convention. Check gate bounds, refractory behavior, and time-step or spatial convergence.<br/>
+<br/>
+<strong>Synapses, coupled cells &amp; model critique:</strong> When transmitter T = 0, recover exponential decay of s. At Vpost = Esyn, verify zero synaptic current.</p>
+<p>
+<strong>Milestone:</strong> Present the refined final-project demo developed through Demos 1–3. The single-cell example is a class activity; spatial propagation is an optional implementation.</p>
+</div>
+</details>
+</td>
+<td class="reading-cell"><a href="https://link.springer.com/book/10.1007/978-0-387-75847-3">Keener &amp; Sneyd I</a>: excitability, wave propagation, and intercellular communication.<div class="additional-reading"><p><strong>Additional reading</strong></p><ul><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/12-4-the-action-potential">A&amp;P §12.4: The Action Potential</a></li><li><a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/12-5-communication-between-neurons">A&amp;P §12.5: Communication Between Neurons</a></li><li><a href="https://neuronaldynamics.epfl.ch/online/Ch2.S2.html">ND §2.2: Hodgkin–Huxley Model</a></li><li><a href="https://neuronaldynamics.epfl.ch/online/Ch3.S1.html">ND §3.1: Synapses</a></li><li><a href="https://neuronaldynamics.epfl.ch/online/Ch3.S3.html">ND §3.3: Axons</a>; <a href="https://neuronaldynamics.epfl.ch/online/Ch3.S2.html">ND §3.2: The Dendritic Tree</a></li></ul></div><details><summary>Reading guidance</summary><p>optional cable-equation extension.</p></details></td>
+<td class="assignment-cell"><span class="badge present">Final presentation</span><p>Your refined project demo.</p><details><summary>Presentation checklist</summary><p>Present the refined project built through Demos 1–3. Explain your physiological question, equations, assumptions, results, validation, and limitations. Demonstrate the model and describe how you used AI coding tools.</p></details></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Written Final Exam: Monday, December 14, 2026, 10:30 AM–12:20 PM at THO 101.</strong></p>
+</section>
+<section id="ai">
+<h2>AI tools: Week 1</h2>
+<p>Learn how a coding agent reads a project, edits files, runs code, checks results, and repeats. Use this workflow for every course demo.</p>
+<ul>
+<li>
+<strong>Autocomplete to agents:</strong> from suggesting the next line to making coordinated changes across multiple files.</li>
+<li>
+<strong>Agentic loops and tool use:</strong> understand the cycle of reading, acting, checking, and revising.</li>
+<li>
+<strong>Function calling:</strong> an AI requests an action; application code runs it and returns a result.</li>
+<li>
+<strong>Structured outputs:</strong> use a defined format for parameters and results.</li>
+<li>
+<strong>Model Context Protocol basics:</strong> understand how hosts, clients, and servers connect AI applications to tools and data.</li>
+</ul>
+<h3>Tools we will discuss</h3>
+<p>Compare their documented architecture: how they gather context, use tools, execute code, and respond to feedback. Choose one for your work.</p>
+<ul>
+<li>
+<a href="https://developers.openai.com/codex/">Codex</a> — our main option for implementation.</li>
+<li>
+<a href="https://cursor.com/docs/agent/overview">Cursor</a> — an editor with an agent that works across a codebase.</li>
+<li>
+<a href="https://code.claude.com/docs/en/how-claude-code-works">Claude Code</a> — a coding agent with file and command tools.</li>
+<li>
+<a href="https://docs.devin.ai/get-started/devin-intro">Devin</a> — delegated coding tasks in a managed workspace.</li>
+<li>
+<a href="https://docs.devin.ai/desktop/cascade/cascade">Windsurf / Cascade</a> — an editor-based agent; current Cascade documentation is under Devin Desktop.</li>
+</ul>
+<p class="first-activity">
+<strong>First activity:</strong> build a membrane-voltage simulation for C dV/dt = g(E − V). Compare it with V(t) = E + (V₀ − E)e<sup>−t/τ</sup>, where τ = C/g. Change the parameters and explain what happens. </p>
+<details class="reference-details"><summary>API references: OpenAI, Gemini, Claude &amp; MCP</summary>
+<p class="small">Choose the documentation for the tool you use. Compare how different providers support tool calling and structured outputs.</p>
+<ul class="small">
+<li><strong>OpenAI:</strong> <a href="https://platform.openai.com/docs/guides/function-calling">Function calling</a> · <a href="https://platform.openai.com/docs/guides/structured-outputs">Structured outputs</a></li>
+<li><strong>Google Gemini:</strong> <a href="https://ai.google.dev/gemini-api/docs/function-calling">Function calling</a> · <a href="https://ai.google.dev/gemini-api/docs/structured-output">Structured outputs</a></li>
+<li><strong>Anthropic Claude:</strong> <a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview">Tool use</a> · <a href="https://platform.claude.com/docs/en/build-with-claude/structured-outputs">Structured outputs</a> · <a href="https://code.claude.com/docs/en/how-claude-code-works">How Claude Code works</a></li>
+<li><strong>Model Context Protocol (MCP):</strong> <a href="https://modelcontextprotocol.io/docs/learn/architecture">Architecture and connecting agents to tools</a> — a shared protocol, not specific to one model provider.</li>
+</ul>
+</details></section>
+<section id="readings">
+<h2>Readings</h2>
+<h3>Core textbooks and supporting resources</h3>
+<ul>
+<li>
+Keener &amp; Sneyd, Mathematical Physiology, 2nd edition (2009): <a href="https://link.springer.com/book/10.1007/978-0-387-75847-3">Volume I: cellular physiology</a> and <a href="https://link.springer.com/book/10.1007/978-0-387-79388-7">Volume II: systems physiology</a>.</li>
+<li>
+Phillips, Kondev &amp; Theriot, Physical Biology of the Cell, 1st edition (2009). The second edition adds Garcia as a coauthor; its <a href="https://www.rpgroup.caltech.edu/pboc2/">companion resources</a> are also useful.</li>
+</ul>
+<h3>Additional textbooks</h3>
+<ul>
+<li>OpenStax, Anatomy and Physiology 2e: <a href="https://assets.openstax.org/oscms-prodcms/media/documents/anatomy-and-physiology-2e_-_WEB.pdf">Download the free textbook PDF</a> or <a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/1-introduction">read online</a>. Use the section numbers listed each week for physiological background.</li>
+<li>Gerstner, Kistler, Naud &amp; Paninski, Neuronal Dynamics: <a href="https://neuronaldynamics.epfl.ch/online/index.html">Read the free online textbook</a>. Selected sections support the Week 1 simulation and Weeks 8–10. Sections marked with an asterisk in the book are advanced and optional unless specified.</li>
+</ul>
+<p>
+<strong>Lecture slides and handwritten notes</strong> support class discussion. File links will be added when available for distribution.</p>
+</section>
+<footer>Beiyu Lin · University of Washington · Autumn 2026<br/></footer>
+</main>
+<!-- OPTIONAL SHOW/HIDE AND PRINT CONTROLS -->
+<script>
+const details = [...document.querySelectorAll('#weeks details')];
+const button = document.getElementById('expand-weeks');
+function updateButton(){const all=details.every(d=>d.open);button.textContent=all?'Hide all details':'Show all details';button.setAttribute('aria-expanded',String(all));}
+button.addEventListener('click',()=>{const open=!details.every(d=>d.open);details.forEach(d=>d.open=open);updateButton();});
+details.forEach(d=>d.addEventListener('toggle',updateButton));
+const printDetails = [...document.querySelectorAll('details')];
+window.addEventListener('beforeprint',()=>printDetails.forEach(d=>{d.dataset.wasOpen=String(d.open);d.open=true;}));
+window.addEventListener('afterprint',()=>printDetails.forEach(d=>{d.open=d.dataset.wasOpen==='true';}));
+
+</script>
+</body>
+</html>
