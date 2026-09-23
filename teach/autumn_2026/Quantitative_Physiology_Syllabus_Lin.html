@@ -6,8 +6,9 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Quantitative Physiology · UW Autumn 2026</title>
+<link rel="icon" href="data:,">
 <meta content="University of Washington, Autumn 2026. Understand physiology, interpret equations, and use AI tools to build simulations." name="description"/>
-<link href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMxNzJkMzkiLz48dGV4dCB4PSIzMiIgeT0iNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9IjQzIiBmaWxsPSIjZmZmIj7PhjwvdGV4dD48L3N2Zz4K" rel="icon" type="image/svg+xml"/>
+<!-- <link href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMxNzJkMzkiLz48dGV4dCB4PSIzMiIgeT0iNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9IjQzIiBmaWxsPSIjZmZmIj7PhjwvdGV4dD48L3N2Zz4K" rel="icon" type="image/svg+xml"/> -->
 <!-- PAGE STYLING -->
 <style>
 *{box-sizing:border-box}
@@ -15,7 +16,7 @@ html{scroll-padding-top:24px}
 body{margin:0;background:#fff;color:#252525;font:18px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 main{max-width:1400px;margin:0 auto;padding:48px 28px}
 header{border-bottom:1px solid #d8d8d8;padding-bottom:24px}
-.university{color:#4b2e83;font-weight:600;margin:0 0 8px}
+.university{color:#4b2e83;font-size:26px;font-weight:700;margin:0 0 8px}
 h1{font-size:clamp(30px,5vw,40px);line-height:1.2;letter-spacing:-.7px;margin:8px 0 12px}
 h2{font-size:26px;line-height:1.3;margin:0 0 16px}
 h3{font-size:19px;margin:25px 0 10px}
@@ -162,6 +163,7 @@ main{max-width:1320px}
 <p>Instructor: Beiyu Lin · Draft syllabus</p>
 <p>Contact Email: beiyulin@uw.edu;</p>
 <p>Office Hours: Tu/Th 9–10 AM at Foege N210E;</p>
+<p>Core or Elective: Core</p>
 <p>TA: Jeffrey Pham; Email: jeffp12@uw.edu; Office Hours: TBA.</p>
 <p><strong>First class: Thursday, October 1, 2026.</strong> Meets Tuesdays and Thursdays 10:00 – 11:20 AM at THO 101.</p>
 <nav aria-label="Course sections">
@@ -528,7 +530,14 @@ main{max-width:1320px}
 <a href="https://docs.devin.ai/desktop/cascade/cascade">Windsurf / Cascade</a> — an editor-based agent; current Cascade documentation is under Devin Desktop.</li>
 </ul>
 <p class="first-activity">
-<strong>First activity:</strong> build a membrane-voltage simulation for C dV/dt = g(E − V). Compare it with V(t) = E + (V₀ − E)e<sup>−t/τ</sup>, where τ = C/g. Change the parameters and explain what happens. </p>
+  <strong>First activity:</strong> model how medicine leaves the body over time using
+  dA/dt = −kA, where A(t) is the amount of medicine in the body and k is the elimination rate.
+  Use an AI coding agent to simulate how the amount changes over time and compare it with the
+  analytical solution A(t) = A₀e<sup>−kt</sup>. Change the initial amount A₀ and elimination
+  rate k, and explain how they affect how long the medicine remains in the body.
+</p>
+<!-- <p class="first-activity">
+<strong>First activity:</strong> build a membrane-voltage simulation for C dV/dt = g(E − V). Compare it with V(t) = E + (V₀ − E)e<sup>−t/τ</sup>, where τ = C/g. Change the parameters and explain what happens. </p> -->
 <details class="reference-details"><summary>API references: OpenAI, Gemini, Claude &amp; MCP</summary>
 <p class="small">Choose the documentation for the tool you use. Compare how different providers support tool calling and structured outputs.</p>
 <ul class="small">
@@ -553,8 +562,17 @@ Phillips, Kondev &amp; Theriot, Physical Biology of the Cell, 1st edition (2009)
 <li>Gerstner, Kistler, Naud &amp; Paninski, Neuronal Dynamics: <a href="https://neuronaldynamics.epfl.ch/online/index.html">Read the free online textbook</a>. Selected sections support the Week 1 simulation and Weeks 8–10. Sections marked with an asterisk in the book are advanced and optional unless specified.</li>
 </ul>
 <p>
+<h3>Grading rubrics (tentative)</h3>
+<ul>
+<li> Written Homework: 30%</li>
+<li> Demo: 30% </li>
+<li> Final Exam: 40%. </li></ul></section>
+<p>
 <strong>Lecture slides and handwritten notes</strong> support class discussion. File links will be added when available for distribution.</p>
 </section>
+<section>
+<a href="CoursePolicies.pdf"><Strong>Course Policy (link)</Strong></a>
+
 <footer>Beiyu Lin · University of Washington · Autumn 2026<br/></footer>
 </main>
 <!-- OPTIONAL SHOW/HIDE AND PRINT CONTROLS -->
