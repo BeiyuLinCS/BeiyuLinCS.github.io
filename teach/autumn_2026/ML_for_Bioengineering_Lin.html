@@ -55,6 +55,10 @@ h3{margin:.2rem 0 .55rem;font-size:1.18rem}
 .week{font-weight:800;color:var(--accent);white-space:nowrap}
 .tag{display:inline-block;font-size:.76rem;font-weight:800;padding:3px 8px;border-radius:999px;background:#f0edf6;color:#4b2e83;margin:2px 4px 2px 0}
 .topic strong{display:block;margin-bottom:4px}
+.assignment{display:inline-block;margin-top:7px;padding:4px 9px;border-radius:7px;font-size:.76rem;font-weight:800;line-height:1.3}
+.hw{background:#f2edf8;color:#4b2e83;border:1px solid #ddd2ea}
+.demo{background:#eaf3f8;color:#24556f;border:1px solid #d0e2eb}
+.final{background:#eef5ef;color:#315d3d;border:1px solid #d5e5d8}
 .small{font-size:.91rem;color:var(--muted)}
 .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .project-grid .card{min-height:170px}
@@ -137,6 +141,7 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-s
             <div class="meeting-grid">
               <div class="meeting"><span class="meeting-day">Tuesday</span><span class="meeting-detail">1:00–2:20 PM · OUG 141</span></div>
               <div class="meeting"><span class="meeting-day">Thursday</span><span class="meeting-detail">1:00–2:20 PM · ECE 037</span></div>
+              <div class="meeting"><span class="meeting-day">Final Exam</span><span class="meeting-detail">Mon, Dec 14 · 4:30–6:20 PM · OUG 141</span></div>
             </div>
           </div>
         </div>
@@ -152,7 +157,7 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-s
 <nav>
   <div class="wrap">
     <a href="#about">About</a><a href="#pillars">Three Pillars</a><a href="#outcomes">Learning Outcomes</a>
-    <a href="#schedule">Topics</a><a href="#data">Real Data</a><a href="#ai">AI Tools</a><a href="#projects">Projects</a>
+    <a href="#schedule">Schedule</a><a href="#data">Real Data</a><a href="#ai">AI Tools</a><a href="#projects">Projects</a>
   </div>
 </nav>
 
@@ -203,21 +208,21 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-s
 </section>
 
 <section id="schedule">
-  <h2>Course Topics</h2>
-  <p class="lead">The course progresses from ML foundations to supervised learning, unsupervised learning, and neural networks. Each module connects an algorithmic idea to bioengineering data and an implementation activity.</p>
+  <h2>Course Topics &amp; Assignments</h2>
+  <p class="lead">Each written homework is paired with a project demo. The pair is released together and due together: the written component checks individual conceptual understanding, while the demo applies those concepts to the same semester-long project. HW 2 + Demo 2 and HW 3 + Demo 3 are released one week before their due dates to provide additional preparation time. The three demos progressively build toward the final report and presentation.</p>
   <table class="schedule">
-    <thead><tr><th>Module</th><th>Topics</th><th>Bioengineering & Implementation Focus</th></tr></thead>
+    <thead><tr><th>Module</th><th>Topics</th><th>Bioengineering &amp; Implementation Focus</th><th>Assignments &amp; Project Milestones</th></tr></thead>
     <tbody>
-      <tr><td class="week">1 · Foundations</td><td class="topic"><strong>Introduction to ML</strong><span class="tag">Data processing</span><span class="tag">Missing data</span><span class="tag">Imputation</span><span class="tag">Noise & jittering</span></td><td>Understand features, labels, dataset structure, train/validation/test splits, preprocessing, leakage, and common challenges in biomedical data.</td></tr>
-      <tr><td class="week">2 · Regression</td><td class="topic"><strong>Linear Regression</strong><span class="tag">continuous outcomes</span></td><td>Predict a continuous biological measurement. Interpret coefficients, residuals, error, assumptions, and limitations.</td></tr>
-      <tr><td class="week">3 · Classification I</td><td class="topic"><strong>Logistic Regression · k-NN</strong></td><td>Binary classification, probabilities, decision boundaries, scaling, interpretability, and neighborhood-based reasoning.</td></tr>
-      <tr><td class="week">4 · Classification II</td><td class="topic"><strong>Decision Trees · Random Forests</strong></td><td>Learn nonlinear relationships in structured biomedical data; compare interpretability, variance, feature importance, and ensemble methods.</td></tr>
-      <tr><td class="week">5 · Classification III</td><td class="topic"><strong>Support Vector Machines</strong></td><td>Margins, kernels, feature scaling, and applications to smaller or high-dimensional datasets.</td></tr>
-      <tr><td class="week">6 · Evaluation</td><td class="topic"><strong>Model Evaluation & Reliability</strong><span class="tag">metrics</span><span class="tag">overfitting</span><span class="tag">imbalanced data</span></td><td>Accuracy, sensitivity/recall, specificity, precision, F1, ROC/AUC, cross-validation, generalization, class imbalance, and responsible model comparison.</td></tr>
-      <tr><td class="week">7 · Clustering</td><td class="topic"><strong>k-Means · Hierarchical Clustering · DBSCAN</strong></td><td>Explore unlabeled biological data, discover groups, compare cluster assumptions, and examine sensitivity to distance, scale, density, and outliers.</td></tr>
-      <tr><td class="week">8 · Dimension Reduction</td><td class="topic"><strong>PCA · UMAP</strong></td><td>Visualize and summarize high-dimensional biomedical data. Distinguish linear projection from nonlinear neighborhood-preserving visualization.</td></tr>
-      <tr><td class="week">9 · Neural Networks</td><td class="topic"><strong>Perceptrons · Multilayer Networks · Backpropagation</strong></td><td>Understand layers, activations, loss, optimization, and learning conceptually; use AI tools to build and inspect a small neural network.</td></tr>
-      <tr><td class="week">10 · Modern Deep Learning</td><td class="topic"><strong>CNNs · RNNs · Transformers</strong></td><td>Connect architectures to data: images, physiological signals/time series, sequences, and multimodal biomedical problems. Focus on choosing architectures and interpreting results rather than deriving them from scratch.</td></tr>
+      <tr><td class="week">1 · Foundations</td><td class="topic"><strong>Introduction to ML</strong><span class="tag">Data processing</span><span class="tag">Missing data</span><span class="tag">Imputation</span><span class="tag">Noise &amp; jittering</span></td><td>Features, labels, dataset structure, train/validation/test splits, preprocessing, leakage, and biomedical-data challenges.</td><td><span class="assignment demo">Project Start</span><br>Choose/understand a real-life dataset and define the bioengineering question. Begin AI-assisted exploration and cleaning.</td></tr>
+      <tr><td class="week">2 · Regression</td><td class="topic"><strong>Linear Regression</strong><span class="tag">continuous outcomes</span></td><td>Predict a continuous biological measurement. Interpret coefficients, residuals, error, assumptions, and limitations.</td><td><span class="assignment hw">Written HW 1</span> <span class="assignment demo">Demo 1</span><br><strong>Released together · Due together</strong><br>HW: data preparation, missing data, preprocessing, train/test concepts, and leakage.<br>Demo: problem → data → AI-assisted cleaning, preprocessing, visualization, and verification.</td></tr>
+      <tr><td class="week">3 · Classification I</td><td class="topic"><strong>Logistic Regression · k-NN</strong></td><td>Binary classification, probabilities, decision boundaries, scaling, interpretability, and neighborhood-based reasoning.</td><td><span class="assignment demo">HW 1 + Demo 1 Due</span><br>Submit the written concepts and first project demonstration together.</td></tr>
+      <tr><td class="week">4 · Classification II</td><td class="topic"><strong>Decision Trees · Random Forests</strong></td><td>Nonlinear relationships, interpretability, variance, feature importance, and ensemble methods.</td><td><span class="assignment hw">Written HW 2</span> <span class="assignment demo">Demo 2</span><br><strong>Released · Due Week 6</strong><br>Begin the written concepts and second project demo. One week is provided for preparation before submission.</td></tr>
+      <tr><td class="week">5 · Classification III</td><td class="topic"><strong>Support Vector Machines</strong></td><td>Margins, kernels, feature scaling, and applications to smaller or high-dimensional datasets.</td><td><strong>HW 2 + Demo 2 · Preparation</strong><br>Continue model selection, implementation, comparison, and evaluation before the Week 6 submission.</td></tr>
+      <tr><td class="week">6 · Evaluation</td><td class="topic"><strong>Model Evaluation &amp; Reliability</strong><span class="tag">metrics</span><span class="tag">overfitting</span><span class="tag">imbalanced data</span></td><td>Accuracy, sensitivity/recall, specificity, precision, F1, ROC/AUC, cross-validation, generalization, and class imbalance.</td><td><span class="assignment demo">HW 2 + Demo 2 Due</span><br>Submit the written concepts and second project demonstration together.</td></tr>
+      <tr><td class="week">7 · Clustering</td><td class="topic"><strong>k-Means · Hierarchical Clustering · DBSCAN</strong></td><td>Explore unlabeled biological data, discover groups, compare assumptions, and examine sensitivity to scale, density, and outliers.</td><td><span class="assignment hw">Written HW 3</span> <span class="assignment demo">Demo 3</span><br><strong>Released · Due Week 9</strong><br>Begin the written concepts and third project demo. One week is provided for preparation before submission.</td></tr>
+      <tr><td class="week">8 · Dimension Reduction</td><td class="topic"><strong>PCA · UMAP</strong></td><td>Visualize and summarize high-dimensional biomedical data; compare linear and nonlinear representations.</td><td><strong>HW 3 + Demo 3 · Preparation</strong><br>Continue unsupervised/dimensionality-reduction analysis and refine the project before the Week 9 submission.</td></tr>
+      <tr><td class="week">9 · Neural Networks</td><td class="topic"><strong>Perceptrons · Multilayer Networks · Backpropagation</strong></td><td>Understand layers, activations, loss, optimization, and learning conceptually; use AI tools to build and inspect a small neural network.</td><td><span class="assignment demo">HW 3 + Demo 3 Due</span><br>Submit the written concepts and third project demonstration together.</td></tr>
+      <tr><td class="week">10 · Modern Deep Learning</td><td class="topic"><strong>CNNs · RNNs · Transformers</strong></td><td>Connect architectures to images, physiological signals/time series, sequences, and multimodal biomedical problems.</td><td><span class="assignment final">Final Project Report</span><br>Integrate the three demos into a final report: problem → data → ML/AI workflow → evaluation → biological interpretation → limitations.<br><br><span class="assignment final">Final Written Exam</span><br><strong>Mon, Dec 14 · 4:30–6:20 PM · OUG 141</strong></td></tr>
     </tbody>
   </table>
 </section>
@@ -276,14 +281,22 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-s
     <div class="card"><h3>Communicate</h3><p>Present the problem, data, algorithm choice, AI-assisted workflow, evaluation, biological interpretation, limitations, and next steps.</p></div>
   </div>
 </section>
+<section>
+<h2>Grading (Tentative)</h2>
+<ul>
+  <li>Written Homework: 30%</li>
+  <li>Project Demos: 30%</li>
+  <li>Final Project Report: 20%</li>
+  <li>Final Written Exam: 20%</li>
+</ul>
+</section>
 
 <section>
   <h2>Course Emphasis</h2>
   <div class="philosophy">The goal is not simply: <em>“Can you code a random forest?”</em><br/><br/>The goal is: <strong>“Given a real bioengineering problem and dataset, can you choose an appropriate method, use modern tools to implement it correctly, evaluate whether it works, recognize its limitations, and explain what the results mean?”</strong></div>
 </section>
-
-<a href="CoursePolicies.pdf"><Strong><h2>Course Policy (link)</h2></Strong></a>
 </main>
+
 <footer><div class="wrap">Machine Learning for Bioengineering · Level 1 · Draft syllabus · Beiyu Lin</div></footer>
 </body>
 </html>
