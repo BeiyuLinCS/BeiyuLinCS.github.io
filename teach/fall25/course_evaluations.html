@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Fall 2025 Course Evaluations | Beiyu Lin</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --accent: #1f5fbf;
+      --accent-dark: #174b98;
+      --text: #172033;
+      --muted: #667085;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e4e7ec;
+      --soft: #f1f6fd;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    #page-wrap {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px 72px;
+    }
+
+    /* ---------- Back Link ---------- */
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      color: var(--accent-dark);
+    }
+
+    /* ---------- Header ---------- */
+
+    .page-header {
+      margin-bottom: 30px;
+    }
+
+    .page-header h1 {
+      font-size: 36px;
+      line-height: 1.2;
+      letter-spacing: -0.6px;
+      margin-bottom: 8px;
+    }
+
+    .page-header p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* ---------- Summary ---------- */
+
+    .summary {
+      background: var(--soft);
+      border: 1px solid #d7e4f6;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 24px;
+    }
+
+    .summary h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .summary p {
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .summary ul {
+      margin-left: 22px;
+    }
+
+    .summary li {
+      margin: 5px 0;
+    }
+
+    /* ---------- Course Cards ---------- */
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 16px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    .card h2 {
+      font-size: 21px;
+    }
+
+    .original-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .original-link:hover {
+      color: var(--accent-dark);
+      text-decoration: underline;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 8px;
+    }
+
+    .card ul {
+      margin-left: 22px;
+    }
+
+    .card li {
+      margin: 8px 0;
+    }
+
+    /* ---------- Score ---------- */
+
+    .pill {
+      display: inline-block;
+      padding: 2px 9px;
+      margin-left: 5px;
+      border-radius: 999px;
+      background: var(--soft);
+      border: 1px solid #d6e3f5;
+      color: #174b98;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .overall {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ---------- Footer ---------- */
+
+    .footer {
+      margin-top: 42px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ---------- Mobile ---------- */
+
+    @media (max-width: 650px) {
+
+      #page-wrap {
+        padding: 32px 18px 50px;
+      }
+
+      .page-header h1 {
+        font-size: 30px;
+      }
+
+      .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+<main id="page-wrap">
+
+
+  <!-- Back -->
+
+  <a class="back-link" href="../../index.html">
+    &larr; Back to Teaching
+  </a>
+
+
+  <!-- Header -->
+
+  <header class="page-header">
+
+    <h1>Fall 2025 Course Evaluations</h1>
+
+    <p>
+      Student evaluation highlights from Data Structure,
+      Automata, and Unix.
+    </p>
+
+  </header>
+
+
+  <!-- Summary -->
+
+  <section class="summary">
+
+    <h2>Summary</h2>
+
+    <p>
+      Evaluation results across the three courses reflected
+      particularly strong feedback in:
+    </p>
+
+    <ul>
+
+      <li>Psychological safety and classroom participation</li>
+
+      <li>Instructor preparation and genuine interest in teaching</li>
+
+      <li>Fairness of evaluation</li>
+
+      <li>Instructor accessibility</li>
+
+      <li>Students feeling comfortable asking questions and expressing ideas</li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- ======================================================
+       DATA STRUCTURE
+  ======================================================= -->
+
+  <section class="card">
+
+    <div class="card-header">
+
+      <h2>Data Structure</h2>
+
+      <a class="original-link"
+         href="./IMG_9994.PNG">
+
+        View original evaluation &rarr;
+
+      </a>
+
+    </div>
+
+
+    <div class="label">Key Summary</div>
+
+    <ul>
+
+      <li>
+        Every evaluation category:
+        <span class="pill">5.0</span>
+      </li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- ======================================================
+       AUTOMATA
+  ======================================================= -->
+
+  <section class="card">
+
+    <div class="card-header">
+
+      <h2>Automata</h2>
+
+      <a class="original-link"
+         href="./IMG_9995.PNG">
+
+        View original evaluation &rarr;
+
+      </a>
+
+    </div>
+
+
+    <div class="label">Key Summary</div>
+
+    <ul>
+
+      <li>
+        Students feel free to ask questions and express
+        opinions and ideas:
+        <span class="pill">4.93</span>
+      </li>
+
+      <li>
+        Genuine interest in teaching:
+        <span class="pill">4.83</span>
+      </li>
+
+      <li>
+        Instructor preparedness:
+        <span class="pill">4.7</span>
+      </li>
+
+      <li>
+        Fair evaluation:
+        <span class="pill">4.7</span>
+      </li>
+
+      <li>
+        Accessibility:
+        <span class="pill">4.7</span>
+      </li>
+
+      <li>
+        The instructor provided timely feedback:
+        <span class="pill">4.5</span>
+      </li>
+
+      <li>
+        The course objectives were clearly defined:
+        <span class="pill">4.5</span>
+      </li>
+
+      <li>
+        Students discussed ideas from this course with
+        others outside the classroom:
+        <span class="pill">4.5</span>
+      </li>
+
+    </ul>
+
+
+    <div class="overall">
+
+      <strong>Overall instructor excellence:</strong>
+
+      <span class="pill">4.5</span>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================================
+       UNIX
+  ======================================================= -->
+
+  <section class="card">
+
+    <div class="card-header">
+
+      <h2>Unix</h2>
+
+      <a class="original-link"
+         href="./IMG_9997.PNG">
+
+        View original evaluation &rarr;
+
+      </a>
+
+    </div>
+
+
+    <div class="label">Key Summary</div>
+
+    <ul>
+
+      <li>
+        Students feel free to ask questions and express
+        opinions and ideas:
+        <span class="pill">4.88</span>
+      </li>
+
+      <li>
+        Fair evaluation:
+        <span class="pill">4.33</span>
+      </li>
+
+      <li>
+        Accessibility:
+        <span class="pill">4.25</span>
+      </li>
+
+      <li>
+        The instructor provided timely feedback:
+        <span class="pill">4.25</span>
+      </li>
+
+      <li>
+        Genuine interest in teaching:
+        <span class="pill">4.13</span>
+      </li>
+
+    </ul>
+
+
+    <div class="overall">
+
+      <strong>Overall instructor excellence:</strong>
+
+      <span class="pill">4.13</span>
+
+    </div>
+
+  </section>
+
+
+  <!-- Footer -->
+
+  <footer class="footer">
+
+    <p>
+      Student course evaluation results, Fall 2025.
+    </p>
+
+  </footer>
+
+
+</main>
+
+</body>
+
+</html>
+```
