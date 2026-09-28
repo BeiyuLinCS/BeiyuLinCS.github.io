@@ -116,16 +116,19 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-s
   .wf-arrow{transform:rotate(90deg)}
 }
 
-/* Compact course-partner strip */
-.partner-strip{display:flex;align-items:center;justify-content:center;gap:30px;margin:20px auto 0;width:max-content;max-width:100%;flex-wrap:nowrap}
-.partner-logo-card{display:inline-flex;align-items:center;justify-content:flex-start;gap:9px;width:auto;min-width:0;padding:6px 0;color:var(--text);font-weight:800;font-size:1.25rem;text-align:left;white-space:nowrap;line-height:1.2;transition:.18s ease}
-.partner-logo-card:hover{text-decoration:none;transform:translateY(-2px);color:var(--accent)}
-.cardss-partner{margin-left:0}
+/* Responsive course-partner cards */
+.partner-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,205px),1fr));gap:14px;margin:20px auto 0;width:100%}
+.partner-logo-card{display:flex;align-items:center;gap:12px;min-width:0;min-height:76px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);font-weight:800;font-size:1rem;text-align:left;line-height:1.25;transition:transform .18s ease,color .18s ease,box-shadow .18s ease}
+.partner-logo-card:hover{text-decoration:none;transform:translateY(-2px);color:var(--accent);box-shadow:0 4px 14px rgba(24,31,42,.08)}
+.partner-name{display:flex;flex-direction:column;gap:3px;min-width:0;overflow-wrap:anywhere}
+.partner-pi{font-size:.82em;font-weight:600;color:var(--muted)}
+.cardss-icon{width:44px;height:44px;flex:0 0 44px}
 .partner-emoji{width:44px;height:44px;flex:0 0 44px;display:grid;place-items:center;font-size:2rem;line-height:1}
-.partner-logo-card img{width:44px;height:44px;object-fit:contain;background:transparent}
-.partner-logo-card img.partner-logo-small{width:32px;height:32px;margin:6px}
+.partner-logo-card img{width:44px;height:44px;flex:0 0 44px;object-fit:contain;background:transparent}
+.partner-logo-card img.partner-logo-small{width:32px;height:32px;flex-basis:32px;margin:6px}
+.partner-logo-card img.wayne-logo{object-fit:cover;object-position:left center;border-radius:50%}
 #partners h2{text-align:center}
-@media(max-width:820px){.partner-strip{gap:8px;width:max-content;max-width:100%;justify-content:center}.partner-logo-card{gap:5px;white-space:normal;font-size:.88rem;line-height:1.25}.partner-logo-card img{width:30px;height:30px;flex:0 0 30px}.partner-logo-card img.partner-logo-small{width:24px;height:24px;margin:3px}.partner-emoji{width:30px;height:30px;flex:0 0 30px;font-size:1.5rem}}
+@media(max-width:600px){.partner-strip{grid-template-columns:1fr;gap:10px}.partner-logo-card{min-height:68px;font-size:1rem}}
 </style>
 </head>
 <body>
@@ -182,18 +185,21 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-s
   <h2>Course Partners</h2>
   <div class="partner-strip">
     <a class="partner-logo-card" href="https://sites.bioe.uw.edu/imoukhuede/" target="_blank" rel="noopener">
-      <span class="partner-emoji" aria-hidden="true">🧬</span><span>Imoukhuede Lab</span>
+      <span class="partner-emoji" aria-hidden="true">🧬</span><span class="partner-name">Imoukhuede Lab<span class="partner-pi">[PI: Imoukhuede]</span></span>
     </a>
     <a class="partner-logo-card" href="https://www.benaroyaresearch.org/our-research/labs-research/lab/irvine-lab" target="_blank" rel="noopener">
       <img class="partner-logo-small" src="https://www.google.com/s2/favicons?domain=benaroyaresearch.org&amp;sz=128" alt="Irvine Lab logo">
-      <span>Irvine Lab</span>
+      <span class="partner-name">Irvine Lab<span class="partner-pi">[PI: Irvine]</span></span>
     </a>
     <a class="partner-logo-card cardss-partner" href="https://cardsslab.org/" target="_blank" rel="noopener">
-      <span class="partner-emoji" aria-hidden="true">❤️</span><span>CardSS Lab</span>
+      <svg class="cardss-icon" width="44" height="44" viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 40C20 36.6 7 27.2 7 18.2C7 12.6 11 9 16 9C19.4 9 22 10.7 24 13.5C26 10.7 28.6 9 32 9C37 9 41 12.6 41 18.2C41 27.2 28 36.6 24 40Z" fill="#FCEBED" stroke="#9C2342" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M11 24H17L20 18L24 31L27 22L29 24H37" stroke="#9C2342" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg><span class="partner-name">CardSS Lab<span class="partner-pi">[PI: Boyle]</span></span>
     </a>
 
     <a class="partner-logo-card" href="https://www.wayneresearchgroup.com/for-the-public" target="_blank" rel="noopener">
-      <span class="partner-emoji" aria-hidden="true">🧪</span><span>Wayne Research Group</span>
+      <img class="wayne-logo" src="https://static.wixstatic.com/media/2404dc_f26f348dde514fc689c9d08549268401~mv2.jpeg/v1/fit/w_220,h_90,q_85/logo.jpeg" alt="Wayne Research Group lab icon"><span class="partner-name">Wayne Research Group<span class="partner-pi">[PI: Wayne]</span></span>
     </a>
 
     <a class="partner-logo-card" href="https://data.wa.gov/browse?q=health&amp;sortBy=relevance&amp;pageSize=20&amp;page=3" target="_blank" rel="noopener">
