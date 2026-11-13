@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Machine Learning for Bioengineering II: deep learning and retrieval-augmented generation for biomedical images, signals, and literature. University of Washington, Winter 2027.">
+<title>Machine Learning for Bioengineering II · Winter 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@600;800&family=Encode+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#4b2e83;
+  --night:#24164a;
+  --gold:#b7a57a;
+  --spirit:#ffc700;
+  --ink:#1f1c2c;
+  --muted:#5c5870;
+  --paper:#f5f4f9;
+  --white:#ffffff;
+  --rule:#dedbe8;
+  --lav:#ebe5f6;
+  --display:"Encode Sans Condensed","Arial Narrow",sans-serif;
+  --body:"Encode Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.65 var(--body)}
+a{color:var(--purple);text-underline-offset:3px}
+a:focus-visible,summary:focus-visible,.btn:focus-visible{outline:3px solid var(--spirit);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1360px;margin:0 auto;padding:0 40px}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.01em;margin:0;color:var(--night)}
+h2{font-size:clamp(30px,4vw,44px);line-height:1.08;font-weight:800}
+h3{font-size:22px;line-height:1.2;font-weight:800}
+.lede{font-size:19px;color:var(--muted);max-width:80ch;margin:14px 0 0}
+section{padding:84px 0}
+section.white{background:var(--white)}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:var(--night);color:#fff}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:58px}
+.brand{color:#fff;text-decoration:none;font:800 17px var(--display)}
+.brand small{font:500 14px var(--body);color:#cfc3ea;margin-left:8px}
+nav{display:flex;gap:22px;flex-wrap:wrap}
+nav a{color:#e6dff5;text-decoration:none;font-size:14px;font-weight:500}
+nav a:hover{color:var(--spirit)}
+
+/* hero */
+.hero{background:var(--night);color:#fff;padding:0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.6fr .8fr;gap:56px;padding-top:72px;padding-bottom:28px;align-items:end}
+.hero h1{color:#fff;font-size:clamp(44px,7vw,86px);line-height:.98;font-weight:800;letter-spacing:-.02em}
+.hero .sub{font-size:clamp(19px,2.2vw,24px);line-height:1.45;color:#e9e3f7;max-width:44ch;margin:24px 0 32px}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 22px;border-radius:8px;font-weight:700;font-size:16px;text-decoration:none}
+.btn.primary{background:var(--spirit);color:var(--night)}
+.btn.ghost{color:#fff;box-shadow:inset 0 0 0 2px #ffffff66}
+.btn.ghost:hover{box-shadow:inset 0 0 0 2px #fff}
+.facts{margin:0;padding:24px 0 0;border-top:2px solid var(--gold)}
+.facts div{display:grid;grid-template-columns:118px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid #ffffff22;font-size:15px}
+.facts dt{color:#bfb2e0}
+.facts dd{margin:0;color:#fff}
+.hero .wrap.tracewrap{display:block;padding-top:0;padding-bottom:0}
+.trace{display:block;width:100%;height:120px;margin-top:20px}
+.trace path{fill:none;stroke:var(--spirit);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:3200;stroke-dashoffset:3200;animation:draw 3.2s .3s ease-out forwards}
+.trace .lbl{fill:#bfb2e0;font:500 13px var(--body)}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.trace path{animation:none;stroke-dashoffset:0}html{scroll-behavior:auto}}
+
+/* why */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:44px;border-top:2px solid var(--night)}
+.three > div{padding:26px 28px 6px 0}
+.three > div + div{padding-left:28px;border-left:1px solid var(--rule)}
+.three .kind{font:800 15px var(--display);color:var(--purple);margin-bottom:6px}
+.three p{margin:8px 0 0;color:var(--muted)}
+
+/* build */
+.build{list-style:none;margin:44px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:b}
+.build li{background:var(--white);border:1px solid var(--rule);border-radius:12px;padding:22px 22px 24px;position:relative}
+.build li.final{background:var(--purple);border-color:var(--purple);color:#fff}
+.build li.final h3{color:#fff}
+.build li.final p{color:#e6def6}
+.build .due{display:inline-block;font-size:13px;font-weight:700;color:var(--purple);background:var(--lav);padding:3px 10px;border-radius:99px;margin-bottom:14px}
+.build li.final .due{background:var(--spirit);color:var(--night)}
+.build p{margin:10px 0 0;color:var(--muted);font-size:15.5px}
+.pairnote{margin:22px 0 0;color:var(--muted);font-size:15.5px;max-width:95ch}
+.build li{display:flex;flex-direction:column}
+.build .due{align-self:flex-start}
+.build .hw{margin-top:auto}
+.build .hw div{border-top:1px dashed var(--rule);padding-top:14px;margin-top:18px}
+.build .hw b{display:block;font-size:14px;color:var(--purple)}
+.build .hw p{margin:4px 0 0;font-size:15px}
+.build li.final .hw div{border-top-color:#ffffff44}
+.build li.final .hw b{color:var(--spirit)}
+
+/* schedule */
+.unit{margin-top:52px}
+.unit-head{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:baseline;padding-bottom:14px;border-bottom:2px solid var(--night)}
+.unit-head h3{font-size:26px}
+.unit-head p{margin:0;color:var(--muted)}
+.week{display:grid;grid-template-columns:220px 1fr 220px;gap:28px;padding:22px 0;border-bottom:1px solid var(--rule)}
+.wk{font:800 15px var(--display);color:var(--purple)}
+.wk span{display:block;font-size:44px;line-height:1;color:var(--night);margin-top:2px}
+.week h4{margin:0 0 4px;font-size:19px;color:var(--ink)}
+.week p{margin:0;color:var(--muted);font-size:16px;max-width:85ch}
+.week .try{margin-top:8px;color:var(--ink)}
+.week .try b{color:var(--purple);font-weight:700}
+.milestone{align-self:start;justify-self:start;font-size:14px;font-weight:700;color:var(--night);background:var(--spirit);padding:6px 12px;border-radius:6px}
+.milestone.soft{background:var(--lav);color:var(--purple)}
+
+/* data */
+.data{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:40px}
+.data h3{font-size:20px;padding-top:16px;border-top:4px solid var(--gold)}
+.data p{color:var(--muted);margin:10px 0 0}
+.privacy{margin-top:40px;padding:18px 22px;background:var(--lav);border-radius:10px;color:var(--ink)}
+
+/* tools */
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:40px}
+.tools ul{list-style:none;padding:0;margin:14px 0 0}
+.tools li{display:grid;grid-template-columns:190px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule)}
+.tools li span{color:var(--muted)}
+.principle{margin-top:48px;font:800 clamp(24px,3vw,34px)/1.2 var(--display);color:var(--purple);max-width:48ch}
+
+/* faq */
+.faq{margin-top:36px;max-width:1040px}
+details{border-bottom:1px solid var(--rule)}
+summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;font-weight:700;font-size:18px;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:6px;top:14px;font:400 28px var(--body);color:var(--purple)}
+details[open] summary::after{content:"–"}
+details p{margin:0 0 22px;color:var(--muted);max-width:90ch}
+
+/* series */
+.series{display:grid;grid-template-columns:repeat(3,1fr);margin-top:40px;border:1px solid var(--rule);border-radius:12px;overflow:hidden;background:var(--white)}
+.series > div{padding:24px 26px}
+.series > div + div{border-left:1px solid var(--rule)}
+.series .q{font-size:14px;font-weight:700;color:var(--muted)}
+.series h3{margin-top:4px;font-size:21px}
+.series p{margin:8px 0 0;color:var(--muted);font-size:15.5px}
+.series .now{background:var(--purple)}
+.series .now .q{color:var(--spirit)}
+.series .now h3{color:#fff}
+.series .now p{color:#e6def6}
+
+.grading{margin-top:40px;color:var(--muted)}
+.grading strong{color:var(--ink)}
+
+footer{background:var(--night);color:#d8cff0;padding:40px 0;font-size:14px}
+footer a{color:#fff}
+footer p{margin:4px 0}
+
+@media (max-width:900px){
+  .wrap{padding:0 24px}
+  .hero .wrap{grid-template-columns:1fr;gap:36px}
+  .three,.data,.tools,.series{grid-template-columns:1fr}
+  .three > div + div{padding-left:0;border-left:0;border-top:1px solid var(--rule)}
+  .series > div + div{border-left:0;border-top:1px solid var(--rule)}
+  .build{grid-template-columns:1fr 1fr}
+  .unit-head{grid-template-columns:1fr;gap:6px}
+  .week{grid-template-columns:72px 1fr;gap:16px}
+  .wk span{font-size:34px}
+  .milestone{grid-column:2}
+  nav{display:none}
+  .tools li{grid-template-columns:1fr;gap:0}
+}
+@media (max-width:560px){.build{grid-template-columns:1fr}section{padding:60px 0}}
+@media print{.top{position:static}.trace path{animation:none;stroke-dashoffset:0}section{padding:28px 0}.week,.build li{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">ML for BioE II <small>UW Bioengineering</small></a>
+    <nav aria-label="Page sections">
+      <a href="#why">Why take it</a>
+      <a href="#build">What you'll build</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#tools">Data &amp; tools</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Machine Learning for Bioengineering II</h1>
+      <p class="sub">Train deep learning models that read medical images, heart signals, and the scientific literature, then demonstrate they actually work.</p>
+      <div class="btns">
+        <a class="btn primary" href="#schedule">See the 10-week plan</a>
+        <a class="btn ghost" href="#build">What you'll build</a>
+      </div>
+    </div>
+    <dl class="facts">
+      <div><dt>Quarter</dt><dd>Winter 2027</dd></div>
+      <div><dt>Instructor</dt><dd>Beiyu Lin</dd></div>
+      <div><dt>Department</dt><dd>Bioengineering, University of Washington</dd></div>
+      <div><dt>Coursework</dt><dd>3 demos with written homework, final project</dd></div>
+      <div><dt>Time &amp; room</dt><dd>To be announced</dd></div>
+    </dl>
+  </div>
+  <div class="wrap tracewrap">
+    <svg class="trace" viewBox="0 0 1100 120" preserveAspectRatio="none" role="img" aria-label="A heartbeat trace running across the page">
+      <path d="M0 70 H120 l10 -6 l10 6 H200 l8 8 l10 -62 l12 78 l8 -24 H330 l14 -10 l14 10 H470 l10 -6 l10 6 H540 l8 8 l10 -62 l12 78 l8 -24 H680 l14 -10 l14 10 H820 l10 -6 l10 6 H890 l8 8 l10 -62 l12 78 l8 -24 H1020 l14 -10 l14 10 H1100"/>
+    </svg>
+  </div>
+</section>
+
+<section id="why" class="white">
+  <div class="wrap">
+    <h2>Three kinds of biomedical data, one skill set</h2>
+    <p class="lede">In ML I you learned the core ideas. In ML II you take them to the data bioengineers actually work with, using the deep learning methods behind today's medical AI.</p>
+    <div class="three">
+      <div>
+        <div class="kind">Images</div>
+        <h3>Classify and segment</h3>
+        <p>Use CNNs and pretrained models to find cells in microscopy and outline the heart in echocardiograms.</p>
+      </div>
+      <div>
+        <div class="kind">Signals</div>
+        <h3>Model time series</h3>
+        <p>Analyze ECG and wearable data with recurrent networks, and learn why many published models fail on new patients.</p>
+      </div>
+      <div>
+        <div class="kind">Literature</div>
+        <h3>Build a research assistant</h3>
+        <p>Use embeddings and retrieval-augmented generation (RAG) to answer questions from papers and protocols, with citations you can check.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="build">
+  <div class="wrap">
+    <h2>What you'll build</h2>
+    <p class="lede">Three hands-on demos, each paired with a written homework, building toward a final project you can show in a research interview or on your portfolio. The demo shows you can build it; the homework shows you understand why it works.</p>
+    <ol class="build">
+      <li>
+        <span class="due">Due week 3</span>
+        <h3>Demo 1: Train and compare</h3>
+        <p>Train a neural network on biomedical data and show whether it beats a simpler baseline.</p>
+        <div class="hw"><div><b>Written HW 1</b><p>Explain your regularization choices, interpret Dice and IoU, and justify patient-level splits.</p></div></div>
+      </li>
+      <li>
+        <span class="due">Due week 5</span>
+        <h3>Demo 2: Model and validate</h3>
+        <p>Model images or signals, then audit your model for data leakage and test how well it generalizes.</p>
+        <div class="hw"><div><b>Written HW 2</b><p>Spot leakage in study designs, read calibration results, and explain why models fail at new sites.</p></div></div>
+      </li>
+      <li>
+        <span class="due">Due week 8</span>
+        <h3>Demo 3: Retrieve and ground</h3>
+        <p>Build a working RAG pipeline over biomedical documents and check that its answers match the sources.</p>
+        <div class="hw"><div><b>Written HW 3</b><p>Explain how attention works, compare semantic and keyword search, and judge whether answers are supported.</p></div></div>
+      </li>
+      <li class="final">
+        <span class="due">Week 10</span>
+        <h3>Final project</h3>
+        <p>Take on a real biomedical problem using deep learning, RAG, or both. Present it with a report.</p>
+        <div class="hw"><div><b>Written report</b><p>Problem, data, method, evaluation, biological interpretation and limitations.</p></div></div>
+      </li>
+    </ol>
+    <p class="pairnote">Each written homework is released and due together with its demo, the same format as ML I. Expect short-answer questions on why a method works, how to read its results and where it can fail. Dates are proposed and will be confirmed before the quarter starts.</p>
+  </div>
+</section>
+
+<section id="schedule" class="white">
+  <div class="wrap">
+    <h2>The 10-week plan</h2>
+    <p class="lede">Three units, each centered on one kind of data. Every week pairs a method with a real bioengineering application, and each unit ends with a demo and written homework.</p>
+
+    <div class="unit">
+      <div class="unit-head"><h3>Unit 1: Images</h3><p>Weeks 1–3. From a first neural network to segmenting cells and heart chambers.</p></div>
+      <div class="week">
+        <div class="wk">Week<span>1</span></div>
+        <div><h4>Neural networks, optimization and regularization</h4><p>Training in PyTorch, choosing an optimizer, and preventing overfitting with dropout, weight decay and early stopping.</p><p class="try"><b>You'll try:</b> revisit an ML I dataset and see whether a neural network beats your old model.</p></div>
+        <div></div>
+      </div>
+      <div class="week">
+        <div class="wk">Week<span>2</span></div>
+        <div><h4>CNNs and transfer learning</h4><p>How convolutions see images, and how to reuse pretrained models like ResNet when you have little data.</p><p class="try"><b>You'll try:</b> classify medical images with patient-level splits.</p></div>
+        <div></div>
+      </div>
+      <div class="week">
+        <div class="wk">Week<span>3</span></div>
+        <div><h4>Image segmentation</h4><p>Pixel-by-pixel prediction with U-Net, measured with Dice and IoU.</p><p class="try"><b>You'll try:</b> segment microscopy and echocardiography images.</p></div>
+        <span class="milestone">HW 1 + Demo 1 due</span>
+      </div>
+    </div>
+
+    <div class="unit">
+      <div class="unit-head"><h3>Unit 2: Signals and trust</h3><p>Weeks 4–5. Modeling physiology over time, and checking whether a model can be trusted.</p></div>
+      <div class="week">
+        <div class="wk">Week<span>4</span></div>
+        <div><h4>Biomedical time series</h4><p>1D CNNs, RNNs and LSTMs, and how to cut long recordings into windows.</p><p class="try"><b>You'll try:</b> model ECG and wearable signals without letting the same subject appear in training and test data.</p></div>
+        <div></div>
+      </div>
+      <div class="week">
+        <div class="wk">Week<span>5</span></div>
+        <div><h4>Model reliability and external validation</h4><p>Data leakage, calibration, and what happens when a model meets data from a new hospital or scanner.</p><p class="try"><b>You'll try:</b> test your model on data from another site and report what breaks.</p></div>
+        <span class="milestone">HW 2 + Demo 2 due</span>
+      </div>
+    </div>
+
+    <div class="unit">
+      <div class="unit-head"><h3>Unit 3: Language and retrieval</h3><p>Weeks 6–9. From how Transformers work to an assistant that answers from the literature.</p></div>
+      <div class="week">
+        <div class="wk">Week<span>6</span></div>
+        <div><h4>Attention, Transformers and LLM foundations</h4><p>Self-attention, tokenization, and how pretrained language models generate text.</p><p class="try"><b>You'll try:</b> apply pretrained models to biomedical sequences and clinical text.</p></div>
+        <span class="milestone soft">Pick a RAG question</span>
+      </div>
+      <div class="week">
+        <div class="wk">Week<span>7</span></div>
+        <div><h4>Embeddings and representation learning</h4><p>Turning text into vectors and finding related documents by meaning, not just keywords.</p><p class="try"><b>You'll try:</b> build semantic search over scientific abstracts.</p></div>
+        <div></div>
+      </div>
+      <div class="week">
+        <div class="wk">Week<span>8</span></div>
+        <div><h4>RAG fundamentals</h4><p>Ingesting documents, chunking, indexing, retrieving and prompting.</p><p class="try"><b>You'll try:</b> answer research questions grounded in the papers you retrieve.</p></div>
+        <span class="milestone">HW 3 + Demo 3 due</span>
+      </div>
+      <div class="week">
+        <div class="wk">Week<span>9</span></div>
+        <div><h4>Building and evaluating RAG</h4><p>Measuring retrieval quality, checking citations, and catching hallucinations.</p><p class="try"><b>You'll try:</b> build a lab-protocol or guideline assistant from approved documents.</p></div>
+        <div></div>
+      </div>
+    </div>
+
+    <div class="unit">
+      <div class="unit-head"><h3>Showcase</h3><p>Week 10.</p></div>
+      <div class="week">
+        <div class="wk">Week<span>10</span></div>
+        <div><h4>Final project presentations</h4><p>Present your problem, method, results and limitations, and see what your classmates built.</p></div>
+        <span class="milestone">Final project</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <h2>Real data, modern tools</h2>
+    <p class="lede">You'll work with open biomedical datasets and, where available, data from UW partner labs. Partners for Winter 2027 will be confirmed before the quarter.</p>
+    <div class="data">
+      <div><h3>Medical images</h3><p>Microscopy, histology, ultrasound and echocardiography.</p></div>
+      <div><h3>Physiological signals</h3><p>ECG, wearable sensors and long-term recordings.</p></div>
+      <div><h3>Biomedical documents</h3><p>Open-access papers, approved lab protocols and public clinical guidelines.</p></div>
+    </div>
+    <p class="privacy">Use only data you're authorized to use, and never upload identifiable patient data to an AI service that hasn't been approved.</p>
+
+    <div class="tools">
+      <div>
+        <h3>AI coding assistants</h3>
+        <ul>
+          <li><b>Codex and Cursor</b> <span>coding agents, carried over from ML I</span></li>
+          <li><b>Google Colab</b> <span>notebooks with Gemini help and free GPUs</span></li>
+          <li><b>Google Antigravity</b> <span>AI-assisted coding in multiple languages</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Libraries</h3>
+        <ul>
+          <li><b>PyTorch</b> <span>building and training networks</span></li>
+          <li><b>Hugging Face</b> <span>pretrained models and datasets</span></li>
+          <li><b>Sentence Transformers</b> <span>text embeddings</span></li>
+          <li><b>FAISS</b> <span>fast vector search for RAG</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="principle">AI can write the code. You're the bioengineer who checks whether the science holds up.</p>
+  </div>
+</section>
+
+<section id="faq" class="white">
+  <div class="wrap">
+    <h2>Questions students ask</h2>
+    <div class="faq">
+      <details>
+        <summary>Do I need to have taken ML I?</summary>
+        <p>No, it’s recommended but not required. Students who took ML for Bioengineering I will have the smoothest start, since ML II builds on its ideas and tools. If you haven’t, you’ll be fine with some familiarity with train/test splits and accuracy. Week 1 starts with a refresher on neural networks, and the ML I course page is a good resource for filling gaps.</p>
+      </details>
+      <details>
+        <summary>I'm not a strong programmer. Will I keep up?</summary>
+        <p>The course focuses on choosing the right method and judging the results, not memorizing code. You'll use AI coding assistants to write and debug code, and learn to check what they produce.</p>
+      </details>
+      <details>
+        <summary>What is the written homework like?</summary>
+        <p>Three short assignments, one per unit, each released and due with its demo. No coding: you explain why a method fits the data, interpret results like Dice scores or calibration, spot flaws such as data leakage, and judge whether a RAG answer is backed by its sources. It's where you show you understand what the AI-assisted code is doing.</p>
+      </details>
+      <details>
+        <summary>Do I need a GPU or paid software?</summary>
+        <p>No. Required work uses free and open-source tools, and Google Colab provides free GPU time. Free-tier limits can vary, so start assignments early.</p>
+      </details>
+      <details>
+        <summary>Can I use data from my own lab?</summary>
+        <p>Often, yes, for the final project, as long as you're authorized to use it and follow your lab's privacy rules. Talk with the instructor early.</p>
+      </details>
+      <details>
+        <summary>How is the course graded?</summary>
+        <p>Through three written homework assignments, the three demos, a final project report and a final presentation. Weights and exact dates are still being finalized.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Where ML II fits</h2>
+    <div class="series">
+      <div>
+        <div class="q">Autumn 2026</div>
+        <h3><a href="https://beiyulincs.github.io/teach/autumn_2026/ML_for_Bioengineering_Lin.html">ML for BioE I</a></h3>
+        <p>Core machine learning: regression, classification, evaluation, clustering and a first look at neural networks.</p>
+      </div>
+      <div class="now">
+        <div class="q">Winter 2027 · this course</div>
+        <h3>ML for BioE II</h3>
+        <p>Deep learning for images and signals, plus an introduction to RAG.</p>
+      </div>
+      <div>
+        <div class="q">Spring 2027 · planned</div>
+        <h3>ML for BioE III</h3>
+        <p>LLM applications, tool-using agents and agentic AI.</p>
+      </div>
+    </div>
+    <p class="grading"><strong>Still to come:</strong> meeting times, room, registration details, grading weights, exact due dates and partner-lab participation will be posted before the quarter begins.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Machine Learning for Bioengineering II, Winter 2027</strong></p>
+    <p>University of Washington, Department of Bioengineering. Instructor: Beiyu Lin.</p>
+    <p>Draft course website. <a href="https://beiyulincs.github.io/teach/autumn_2026/ML_for_Bioengineering_Lin.html">View ML for Bioengineering I (Autumn 2026)</a></p>
+  </div>
+</footer>
+</body>
+</html>
